@@ -652,7 +652,7 @@
       } catch(e) { console.error('loadSkills error:', e); }
     }
     
-    loadSkills(); console.log("页面加载完成 v5");
+    window.onload = function() { loadSkills(); }; console.log("页面加载完成 v5");
 
     console.log('🦞 温暖虾塘已就绪');
   </script>
