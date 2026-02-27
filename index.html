@@ -238,6 +238,14 @@
       margin-top: 12px;
     }
 
+    .field-group {
+      display: contents;
+    }
+
+    .field-group.is-hidden {
+      display: none;
+    }
+
     label {
       display: flex;
       flex-direction: column;
@@ -457,28 +465,43 @@
       <p class="subtitle">填写后将提交为 `pending`，审核通过后展示在上方市场。</p>
       <form id="skillForm">
         <label>
-          技能名称
+          名称
           <input type="text" name="name" required maxlength="50" placeholder="例如：自动化脚本助手" />
         </label>
         <label>
-          类型
-          <select name="type" required>
+          提交类型
+          <select name="type" id="submitType" required>
             <option value="">请选择</option>
-            <option>编程</option>
-            <option>搜索</option>
-            <option>写作</option>
-            <option>浏览器</option>
-            <option>记忆</option>
-            <option>设计</option>
+            <option>品种</option>
+            <option>技能</option>
+            <option>场景</option>
           </select>
         </label>
-        <label>
-          标签（逗号分隔）
-          <input type="text" name="tags" placeholder="例如：效率, 工作流" />
-        </label>
+        <div class="field-group" data-section="skill">
+          <label>
+            技能标签（逗号分隔）
+            <input type="text" name="tags" placeholder="例如：效率, 工作流" />
+          </label>
+        </div>
+        <div class="field-group" data-section="breed">
+          <label>
+            品种徽章
+            <input type="text" name="breedBadge" placeholder="例如：统筹" />
+          </label>
+          <label>
+            品种提示
+            <input type="text" name="breedMeta" placeholder="例如：擅长战略规划与节奏把控" />
+          </label>
+        </div>
+        <div class="field-group" data-section="scene">
+          <label>
+            场景徽章
+            <input type="text" name="sceneBadge" placeholder="例如：企业" />
+          </label>
+        </div>
         <label>
           描述
-          <textarea name="description" placeholder="简要介绍你的技能包"></textarea>
+          <textarea name="description" placeholder="简要介绍你的内容"></textarea>
         </label>
         <div class="actions">
           <button type="submit">提交审核</button>
@@ -496,6 +519,12 @@
     const emptyEl = document.getElementById("empty");
     const form = document.getElementById("skillForm");
     const formStatus = document.getElementById("formStatus");
+    const typeSelect = document.getElementById("submitType");
+    const fieldGroups = {
+      skill: document.querySelector('.field-group[data-section="skill"]'),
+      breed: document.querySelector('.field-group[data-section="breed"]'),
+      scene: document.querySelector('.field-group[data-section="scene"]')
+    };
 
     const headers = {
       apikey: SUPABASE_KEY,
@@ -528,6 +557,22 @@
         `;
         skillsEl.appendChild(card);
       }
+    }
+
+    function toggleGroup(group, isVisible) {
+      if (!group) return;
+      group.classList.toggle("is-hidden", !isVisible);
+      group.querySelectorAll("input, textarea, select").forEach((input) => {
+        input.disabled = !isVisible;
+        if (!isVisible) input.value = "";
+      });
+    }
+
+    function updateFormGroups() {
+      const selected = typeSelect.value;
+      toggleGroup(fieldGroups.skill, selected === "技能");
+      toggleGroup(fieldGroups.breed, selected === "品种");
+      toggleGroup(fieldGroups.scene, selected === "场景");
     }
 
     async function loadSkills() {
@@ -580,6 +625,9 @@
         console.error(err);
       }
     });
+
+    typeSelect.addEventListener("change", updateFormGroups);
+    updateFormGroups();
 
     loadSkills();
   </script>
