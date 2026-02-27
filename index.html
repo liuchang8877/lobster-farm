@@ -77,22 +77,6 @@
       margin: 0 auto 32px;
       line-height: 1.7;
     }
-    .hero .stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      margin-top: 40px;
-    }
-    .stat { text-align: center; }
-    .stat .num {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--sea);
-    }
-    .stat .label {
-      font-size: 14px;
-      color: #888;
-    }
 
     .section {
       max-width: 1200px;
@@ -100,9 +84,6 @@
       padding: 40px 24px 80px;
     }
     .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       margin-bottom: 32px;
     }
     .section-title {
@@ -112,12 +93,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      margin-bottom: 8px;
     }
     .section-title span { font-size: 32px; }
-    .view-all {
-      color: var(--coral);
-      text-decoration: none;
-      font-weight: 600;
+    .section-desc {
+      color: #666;
+      font-size: 15px;
     }
 
     .grid {
@@ -179,40 +160,56 @@
       font-size: 12px;
       color: var(--sea);
     }
-    .card .price {
-      margin-top: 16px;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--sea);
-    }
-    .card .price.free { color: #22c55e; }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
+    /* 场景样式 */
+    .scene-card {
+      background: linear-gradient(135deg, var(--sea), #164d4b);
+      border-radius: 24px;
+      padding: 32px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
     }
-    .feature {
+    .scene-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+    }
+    .scene-card h3 {
+      color: #fff;
+      font-size: 22px;
+      margin: 0 0 12px;
+    }
+    .scene-card p {
+      color: rgba(255,255,255,0.8);
+      margin: 0 0 20px;
+      line-height: 1.6;
+    }
+    .scene-card .tags .tag {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .intro {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
       text-align: center;
-      padding: 32px 24px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px var(--shadow);
     }
-    .feature-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 16px;
-      background: linear-gradient(135deg, var(--shell), var(--coral));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
+    .intro h2 {
+      font-size: 32px;
+      color: var(--sea);
+      margin: 0 0 16px;
     }
-    .feature h3 { margin: 0 0 8px; }
-    .feature p { color: #666; margin: 0; }
+    .intro p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 16px;
+    }
 
     footer {
       background: var(--sea);
@@ -226,7 +223,6 @@
       .hero h1 { font-size: 32px; }
       .nav { flex-direction: column; gap: 16px; }
       nav a { margin: 0 12px; }
-      .hero .stats { gap: 24px; }
     }
   </style>
 </head>
@@ -237,7 +233,7 @@
       <nav>
         <a href="#varieties">品种</a>
         <a href="#skills">技能</a>
-        <a href="#howto">使用</a>
+        <a href="#waters">水域</a>
         <a href="#about">关于</a>
       </nav>
     </div>
@@ -246,32 +242,19 @@
   <main>
     <section class="hero">
       <h1>🦞 你的 AI 养殖专家</h1>
-      <p>像挑选优质龙虾品种一样，选择最适合你的 AI 角色和技能。免费安装，持续更新，让你的 OpenClaw 成为最强大的生产力工具。</p>
-      <div class="stats">
-        <div class="stat">
-          <div class="num">50+</div>
-          <div class="label">龙虾品种</div>
-        </div>
-        <div class="stat">
-          <div class="num">100+</div>
-          <div class="label">实用技能</div>
-        </div>
-        <div class="stat">
-          <div class="num">1000+</div>
-          <div class="label">活跃用户</div>
-        </div>
-      </div>
+      <p>像挑选优质龙虾品种一样，选择最适合你的 AI 角色。<br>像学习龙虾技能一样，掌握 OpenClaw 的各种能力。<br>像选择水域一样，找到最适合你的使用场景。</p>
     </section>
 
+    <!-- 龙虾品种 -->
     <section id="varieties" class="section">
       <div class="section-header">
-        <div class="section-title"><span>🦞</span>热门龙虾品种</div>
-        <a href="#" class="view-all">查看全部 →</a>
+        <div class="section-title"><span>🦞</span>龙虾品种 · 角色</div>
+        <div class="section-desc">不同品种的龙虾有不同的性格和能力，选择适合你的 AI 角色</div>
       </div>
       <div class="grid">
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">🎖️</div>
-          <div class="type">CEO 角色</div>
+          <div class="type">CEO 品种</div>
           <h3>司令龙虾</h3>
           <p>全局管理者，统筹团队、制定策略、决策执行。像将军一样指挥你的 AI 团队。</p>
           <div class="tags">
@@ -279,25 +262,23 @@
             <span class="tag">战略规划</span>
             <span class="tag">决策</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👨‍🍳</div>
-          <div class="type">内容角色</div>
+          <div class="type">内容品种</div>
           <h3>厨师龙虾</h3>
-          <p>内容创作高手，写文案、做教程、生成方案。让你的想法变成精美内容。</p>
+          <p>内容创作高手，写文案，做教程、生成方案。让你的想法变成精美内容。</p>
           <div class="tags">
             <span class="tag">文案写作</span>
             <span class="tag">教程制作</span>
             <span class="tag">营销</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🔧</div>
-          <div class="type">工程角色</div>
+          <div class="type">工程品种</div>
           <h3>钳工龙虾</h3>
           <p>编程专家，写代码、调Bug、搭架构。你的专属工程师 24/7 待命。</p>
           <div class="tags">
@@ -305,12 +286,11 @@
             <span class="tag">调试</span>
             <span class="tag">架构</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🔍</div>
-          <div class="type">调研角色</div>
+          <div class="type">调研品种</div>
           <h3>侦察龙虾</h3>
           <p>信息搜集专家，全网搜索、竞品分析、资料整理。无所不知的情报员。</p>
           <div class="tags">
@@ -318,12 +298,11 @@
             <span class="tag">分析</span>
             <span class="tag">调研</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧹</div>
-          <div class="type">运营角色</div>
+          <div class="type">运营品种</div>
           <h3>管家龙虾</h3>
           <p>运营全能手，日程管理、数据整理、流程自动化。你的数字管家。</p>
           <div class="tags">
@@ -331,12 +310,11 @@
             <span class="tag">自动化</span>
             <span class="tag">效率</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">📚</div>
-          <div class="type">学习角色</div>
+          <div class="type">学习品种</div>
           <h3>学者龙虾</h3>
           <p>知识导师，解释概念、制定计划、答疑解惑。24小时在线的学习伙伴。</p>
           <div class="tags">
@@ -344,15 +322,15 @@
             <span class="tag">答疑</span>
             <span class="tag">辅导</span>
           </div>
-          <div class="price free">免费</div>
         </div>
       </div>
     </section>
 
+    <!-- 龙虾技能 -->
     <section id="skills" class="section">
       <div class="section-header">
-        <div class="section-title"><span>⚡</span>热门龙虾技能</div>
-        <a href="#" class="view-all">查看全部 →</a>
+        <div class="section-title"><span>⚡</span>龙虾技能 · SKILL</div>
+        <div class="section-desc">让龙虾掌握各种技能，就像给渔船装配不同的工具</div>
       </div>
       <div class="grid">
         <div class="card">
@@ -365,7 +343,6 @@
             <span class="tag">JavaScript</span>
             <span class="tag">Go</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
@@ -378,7 +355,6 @@
             <span class="tag">调研</span>
             <span class="tag">爬虫</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
@@ -391,7 +367,6 @@
             <span class="tag">文档</span>
             <span class="tag">报告</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
@@ -404,7 +379,6 @@
             <span class="tag">填表</span>
             <span class="tag">抓取</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
@@ -417,7 +391,6 @@
             <span class="tag">知识库</span>
             <span class="tag">偏好</span>
           </div>
-          <div class="price free">免费</div>
         </div>
 
         <div class="card">
@@ -430,49 +403,92 @@
             <span class="tag">设计</span>
             <span class="tag">图片</span>
           </div>
-          <div class="price free">免费</div>
         </div>
       </div>
     </section>
 
-    <section id="howto" class="section">
+    <!-- 龙虾水域 -->
+    <section id="waters" class="section">
       <div class="section-header">
-        <div class="section-title"><span>📖</span>如何使用</div>
+        <div class="section-title"><span>🌊</span>龙虾水域 · 使用场景</div>
+        <div class="section-desc">不同水域适合不同类型的龙虾，找到最适合你的场景</div>
       </div>
-      <div class="features">
-        <div class="feature">
-          <div class="feature-icon">1️⃣</div>
-          <h3>选择品种</h3>
-          <p>根据你的需求，选择合适的龙虾品种（AI 角色）</p>
+      <div class="grid">
+        <div class="scene-card">
+          <h3>🏢 企业水域</h3>
+          <p>团队协作、项目管理、客服响应。让 AI 成为你的企业助手，提升整体效率。</p>
+          <div class="tags">
+            <span class="tag">团队协作</span>
+            <span class="tag">项目管理</span>
+            <span class="tag">客服</span>
+          </div>
         </div>
-        <div class="feature">
-          <div class="feature-icon">2️⃣</div>
-          <h3>安装技能</h3>
-          <p>挑选需要的技能包，让你的龙虾具备各种能力</p>
+
+        <div class="scene-card">
+          <h3>🏠 个人工作室</h3>
+          <p>独立开发、内容创作、个人品牌。让 AI 成为你的私人工作室，一个人顶一个团队。</p>
+          <div class="tags">
+            <span class="tag">独立开发</span>
+            <span class="tag">内容创作</span>
+            <span class="tag">个人品牌</span>
+          </div>
         </div>
-        <div class="feature">
-          <div class="feature-icon">3️⃣</div>
-          <h3>开始使用</h3>
-          <p>配置到你的 OpenClaw，立刻拥有超强生产力</p>
+
+        <div class="scene-card">
+          <h3>🎓 学术研究</h3>
+          <p>文献调研、论文写作、知识探索。让 AI 成为你的研究伙伴，加速学术进程。</p>
+          <div class="tags">
+            <span class="tag">文献调研</span>
+            <span class="tag">论文</span>
+            <span class="tag">知识探索</span>
+          </div>
+        </div>
+
+        <div class="scene-card">
+          <h3>🛒 电商运营</h3>
+          <p>商品描述、客服话术、数据分析。让 AI 成为你的电商运营专家，提升转化率。</p>
+          <div class="tags">
+            <span class="tag">商品描述</span>
+            <span class="tag">客服</span>
+            <span class="tag">数据分析</span>
+          </div>
+        </div>
+
+        <div class="scene-card">
+          <h3>💰 金融分析</h3>
+          <p>市场调研、报告撰写、风险评估。让 AI 成为你的金融分析师，辅助投资决策。</p>
+          <div class="tags">
+            <span class="tag">市场调研</span>
+            <span class="tag">报告</span>
+            <span class="tag">风险评估</span>
+          </div>
+        </div>
+
+        <div class="scene-card">
+          <h3>🏥 医疗健康</h3>
+          <p>健康咨询、医学知识、患者教育。让 AI 成为你的健康顾问，提供专业建议。</p>
+          <div class="tags">
+            <span class="tag">健康咨询</span>
+            <span class="tag">医学知识</span>
+            <span class="tag">患者教育</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section">
-      <div class="section-header">
-        <div class="section-title"><span>🦞</span>关于龙虾养殖基地</div>
-      </div>
-      <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #666; line-height: 1.8;">
-        我们是一个热爱自动化和 AI 的团队，把 OpenClaw 视为"龙虾"精心培养。<br>
-        通过精心挑选的品种和技能，让每个人的 AI 都能发挥最大价值。<br>
-        就像经营一个龙虾养殖基地，我们用心照顾每一只"龙虾"的成长。
-      </p>
+    <section id="about" class="intro">
+      <h2>🦞 关于龙虾养殖基地</h2>
+      <p>我们是一个热爱自动化和 AI 的团队，把 OpenClaw 视为"龙虾"精心培养。<br>
+      龙虾品种 = AI 角色，让 AI 有性格<br>
+      龙虾技能 = SKILL，让 AI 有能力<br>
+      龙虾水域 = 使用场景，让 AI 有用武之地<br><br>
+      就像经营一个龙虾养殖基地，我们用心照顾每一只"龙虾"的成长。</p>
     </section>
   </main>
 
   <footer>
     <p>🦞 龙虾养殖基地 · OpenClaw 角色与技能市场</p>
-    <p style="margin-top: 8px; opacity: 0.6;">让 AI 成为你的温暖伙伴</p>
+    <p style="margin-top: 8px; opacity: 0.6;">品种 · 技能 · 水域 | 让 AI 成为你的温暖伙伴</p>
   </footer>
 </body>
 </html>
