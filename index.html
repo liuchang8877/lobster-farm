@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>龙虾养殖基地 · OpenClaw 教程馆</title>
+  <style>
+    :root {
+      --coral: #ff6f61;
+      --shell: #ffb199;
+      --sea: #2b6d6a;
+      --foam: #f6f2ec;
+      --ink: #2a2a2a;
+      --sand: #f3e0c8;
+      --reef: #ff8a5b;
+      --shadow: rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "ZCOOL KuaiLe", "Ma Shan Zheng", "KaiTi", "STKaiti", "Noto Serif SC", serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top left, #fff8f1 0%, #fbe5d1 40%, #f1d1b2 100%);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 248, 241, 0.9);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--sea);
+    }
+
+    .brand span {
+      font-size: 28px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      margin-left: 16px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--coral);
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 10px;
+      padding: 0 20px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: var(--foam);
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      top: -40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, var(--shell), transparent 60%);
+      opacity: 0.7;
+    }
+
+    .hero h1 {
+      margin-top: 0;
+      font-size: 36px;
+      color: var(--sea);
+    }
+
+    .hero p {
+      line-height: 1.7;
+      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--shell);
+      color: var(--sea);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .lobster-pond {
+      background: linear-gradient(140deg, var(--sea), #164d4b);
+      border-radius: 24px;
+      padding: 24px;
+      color: #fff;
+      display: grid;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lobster-pond::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 60%);
+    }
+
+    .lobster-pond h2 {
+      margin: 0;
+    }
+
+    .lobster-pond ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+    }
+
+    .lobster-pond li {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 28px;
+      color: var(--sea);
+      margin-bottom: 18px;
+    }
+
+    .section-title span {
+      font-size: 26px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #fff7ef;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px var(--shadow);
+      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--reef);
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 18px var(--shadow);
+    }
+
+    .step span {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--coral);
+      color: #fff;
+      justify-content: center;
+      align-items: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .scenario {
+      background: linear-gradient(120deg, #fff, #ffe9d6);
+      border: 1px dashed var(--coral);
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 24px var(--shadow);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px 50px;
+      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+      color: #5f4b40;
+    }
+
+    .bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--coral);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 600;
+      box-shadow: 0 8px 16px var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      z-index: 20;
+    }
+
+    .bubble:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        display: none;
+      }
+      .nav {
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand"><span>🦞</span>龙虾养殖基地 · OpenClaw</div>
+      <nav>
+        <a href="#home">首页</a>
+        <a href="#tutorial">养殖教程</a>
+        <a href="#skills">技能仓库</a>
+        <a href="#scenes">应用场景</a>
+        <a href="#about">关于我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-card">
+        <h1>欢迎来到龙虾养殖基地</h1>
+        <p>这里看似是一片温暖的龙虾池，实则是 OpenClaw 的训练与分享中心。我们用“养殖”思路讲 AI 助手：从安装、配置到技能繁育，让你的 OpenClaw 健康成长、聪明好用。</p>
+        <div class="tag-list">
+          <span class="tag">新手友好</span>
+          <span class="tag">教程清晰</span>
+          <span class="tag">技能可扩展</span>
+          <span class="tag">场景丰富</span>
+        </div>
+      </div>
+      <div class="lobster-pond">
+        <h2>今日池塘水质指数</h2>
+        <ul>
+          <li>温度：适合安装 OpenClaw 的舒适环境</li>
+          <li>盐度：配置文件清澈可读，易维护</li>
+          <li>氧气：SKILL 支持充足，拓展能力强</li>
+          <li>活力：应用场景持续上新</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tutorial">
+      <div class="section-title"><span>🐚</span>养殖教程：如何养 OpenClaw</div>
+      <div class="steps">
+        <div class="step">
+          <span>1</span>
+          <div>
+            <strong>安装池塘</strong>
+            <p>准备好运行环境，下载 OpenClaw 主程序。就像搭建养殖池，保证水源、电力（依赖）齐全。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>2</span>
+          <div>
+            <strong>配置水质</strong>
+            <p>编辑配置文件，设置模型、路径、权限等。保持配置简洁明确，让 OpenClaw 易于生长。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>3</span>
+          <div>
+            <strong>投喂指令</strong>
+            <p>用清晰的任务描述喂养 OpenClaw，保证它理解你的需求，就像投喂高蛋白饲料。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>4</span>
+          <div>
+            <strong>日常巡检</strong>
+            <p>记录日志、复盘结果、迭代配置。养殖基地离不开细心照看。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title"><span>🧰</span>技能仓库：SKILL 使用方法</div>
+      <div class="grid">
+        <div class="card">
+          <h3>技能是什么？</h3>
+          <p>SKILL 是可复用的能力包，类似“龙虾饲料配方”。用对配方，OpenClaw 才能长得快、长得好。</p>
+        </div>
+        <div class="card">
+          <h3>如何启用？</h3>
+          <p>将技能放入指定目录并在配置中声明，OpenClaw 会自动识别。简单就像往池塘加一把好饲料。</p>
+        </div>
+        <div class="card">
+          <h3>如何管理？</h3>
+          <p>给技能标注版本、用途与依赖。保持仓库整洁，便于查找与复用。</p>
+        </div>
+        <div class="card">
+          <h3>协作共享</h3>
+          <p>团队共建技能库，形成“生态养殖”。共享最优配方，提升全员生产力。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenes">
+      <div class="section-title"><span>🌊</span>应用场景：OpenClaw 的多种用法</div>
+      <div class="grid">
+        <div class="scenario">
+          <h3>内容养殖场</h3>
+          <p>生成文案、教程、产品介绍等，让 OpenClaw 成为你的内容产卵机。</p>
+        </div>
+        <div class="scenario">
+          <h3>代码孵化室</h3>
+          <p>自动生成脚本、整理日志、写测试，让开发像投喂一样轻松。</p>
+        </div>
+        <div class="scenario">
+          <h3>运营巡塘</h3>
+          <p>批量处理需求、总结反馈、规划路线，像巡塘一样高效管理。</p>
+        </div>
+        <div class="scenario">
+          <h3>学习教练</h3>
+          <p>定制学习计划、解释概念、巩固知识，OpenClaw 成为你的学习搭档。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title"><span>🦞</span>关于我们</div>
+      <div class="about">
+        <div>
+          <p>我们是一群热爱自动化、工具与成长的人，把 OpenClaw 当作“龙虾”去呵护、去繁育。希望把最有温度、最实用的 AI 养殖方法分享给你。</p>
+          <p>如果你也想建设自己的养殖基地，欢迎加入，一起养出更聪明的 OpenClaw。</p>
+        </div>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb199'/%3E%3Cstop offset='1' stop-color='%23ff6f61'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='360' rx='28' fill='url(%23g)'/%3E%3Cpath d='M120 200c30-60 120-90 200-60 80 30 110 110 60 160-40 40-110 40-160 10-70-40-120-50-100-110z' fill='%23fff3e9' opacity='0.8'/%3E%3Ccircle cx='180' cy='170' r='18' fill='%232b6d6a'/%3E%3Ccircle cx='220' cy='160' r='12' fill='%232b6d6a'/%3E%3Ccircle cx='260' cy='155' r='10' fill='%232b6d6a'/%3E%3Ctext x='70' y='310' font-size='28' font-family='Noto Sans SC' fill='%232b6d6a'%3EOpenClaw 养殖基地%3C/text%3E%3C/svg%3E" alt="OpenClaw 养殖基地插画" />
+      </div>
+    </section>
+  </main>
+
+  <div class="bubble" id="scrollTop">回到水面</div>
+
+  <footer>
+    <p>龙虾养殖基地 · OpenClaw 教程馆 ｜ 让 AI 成为你的温暖伙伴</p>
+  </footer>
+
+  <script>
+    const scrollBtn = document.getElementById('scrollTop');
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
