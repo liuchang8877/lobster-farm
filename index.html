@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>龙虾养殖基地 · OpenClaw 教程馆</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>龙虾养殖基地 · OpenClaw 角色与技能市场</title>
   <style>
     :root {
       --coral: #ff6f61;
@@ -13,418 +13,466 @@
       --ink: #2a2a2a;
       --sand: #f3e0c8;
       --reef: #ff8a5b;
-      --shadow: rgba(0, 0, 0, 0.12);
+      --shadow: rgba(0, 0, 0, 0.1);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "ZCOOL KuaiLe", "Ma Shan Zheng", "KaiTi", "STKaiti", "Noto Serif SC", serif;
+      font-family: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
       color: var(--ink);
-      background: radial-gradient(circle at top left, #fff8f1 0%, #fbe5d1 40%, #f1d1b2 100%);
+      background: linear-gradient(180deg, #fff8f5 0%, #fef6f0 100%);
     }
-
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(255, 248, 241, 0.9);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 12px var(--shadow);
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px var(--shadow);
     }
-
     .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 16px 20px;
-      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
     }
-
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 700;
-      font-size: 20px;
+      font-weight: 800;
+      font-size: 22px;
       color: var(--sea);
     }
-
-    .brand span {
-      font-size: 28px;
-    }
-
+    .brand span { font-size: 32px; }
     nav a {
       text-decoration: none;
       color: var(--ink);
-      margin-left: 16px;
-      font-weight: 600;
+      margin-left: 28px;
+      font-weight: 500;
+      transition: color 0.2s;
     }
-
-    nav a:hover {
-      color: var(--coral);
-    }
-
+    nav a:hover { color: var(--coral); }
+    
     .hero {
-      max-width: 1100px;
-      margin: 40px auto 10px;
-      padding: 0 20px 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      align-items: center;
-    }
-
-    .hero-card {
-      background: var(--foam);
-      padding: 28px;
-      border-radius: 24px;
-      box-shadow: 0 16px 40px var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      right: -50px;
-      top: -40px;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle, var(--shell), transparent 60%);
-      opacity: 0.7;
-    }
-
-    .hero h1 {
-      margin-top: 0;
-      font-size: 36px;
-      color: var(--sea);
-    }
-
-    .hero p {
-      line-height: 1.7;
-      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: var(--shell);
-      color: var(--sea);
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    .lobster-pond {
-      background: linear-gradient(140deg, var(--sea), #164d4b);
-      border-radius: 24px;
-      padding: 24px;
-      color: #fff;
-      display: grid;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lobster-pond::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 60%);
-    }
-
-    .lobster-pond h2 {
-      margin: 0;
-    }
-
-    .lobster-pond ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
-    }
-
-    .lobster-pond li {
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 10px 12px;
-    }
-
-    section {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 48px;
+      margin: 0 0 16px;
+      background: linear-gradient(135deg, var(--sea), var(--coral));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hero .stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 40px;
+    }
+    .stat { text-align: center; }
+    .stat .num {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--sea);
+    }
+    .stat .label {
+      font-size: 14px;
+      color: #888;
     }
 
-    .section-title {
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .section-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 28px;
-      color: var(--sea);
-      margin-bottom: 18px;
+      justify-content: space-between;
+      margin-bottom: 32px;
     }
-
-    .section-title span {
-      font-size: 26px;
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--sea);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title span { font-size: 32px; }
+    .view-all {
+      color: var(--coral);
+      text-decoration: none;
+      font-weight: 600;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: #fff7ef;
-      padding: 20px;
-      border-radius: 18px;
-      box-shadow: 0 10px 24px var(--shadow);
-      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: var(--reef);
-    }
-
-    .steps {
-      display: grid;
-      gap: 12px;
-    }
-
-    .step {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
       background: #fff;
-      border-radius: 16px;
-      padding: 14px 16px;
-      box-shadow: 0 8px 18px var(--shadow);
-    }
-
-    .step span {
-      display: inline-flex;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--coral);
-      color: #fff;
-      justify-content: center;
-      align-items: center;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .scenario {
-      background: linear-gradient(120deg, #fff, #ffe9d6);
-      border: 1px dashed var(--coral);
-      padding: 18px;
-      border-radius: 18px;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      align-items: center;
-    }
-
-    .about img {
-      width: 100%;
       border-radius: 20px;
-      box-shadow: 0 10px 24px var(--shadow);
+      padding: 28px;
+      box-shadow: 0 8px 32px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px var(--shadow);
+    }
+    .card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: var(--ink);
+    }
+    .card .type {
+      font-size: 12px;
+      color: var(--coral);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 0 16px;
+    }
+    .card .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      padding: 4px 12px;
+      background: var(--foam);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--sea);
+    }
+    .card .price {
+      margin-top: 16px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--sea);
+    }
+    .card .price.free { color: #22c55e; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .feature {
+      text-align: center;
+      padding: 32px 24px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--shell), var(--coral));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .feature h3 { margin: 0 0 8px; }
+    .feature p { color: #666; margin: 0; }
 
     footer {
-      text-align: center;
-      padding: 30px 20px 50px;
-      font-family: "Noto Sans SC", "PingFang SC", sans-serif;
-      color: #5f4b40;
-    }
-
-    .bubble {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--coral);
+      background: var(--sea);
       color: #fff;
-      border-radius: 999px;
-      padding: 10px 18px;
-      font-weight: 600;
-      box-shadow: 0 8px 16px var(--shadow);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      z-index: 20;
+      text-align: center;
+      padding: 48px 24px;
     }
+    footer p { opacity: 0.8; margin: 0; }
 
-    .bubble:hover {
-      transform: translateY(-4px) scale(1.02);
-    }
-
-    @media (max-width: 720px) {
-      nav {
-        display: none;
-      }
-      .nav {
-        justify-content: center;
-      }
-      .hero h1 {
-        font-size: 30px;
-      }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .nav { flex-direction: column; gap: 16px; }
+      nav a { margin: 0 12px; }
+      .hero .stats { gap: 24px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <div class="brand"><span>🦞</span>龙虾养殖基地 · OpenClaw</div>
+      <div class="brand"><span>🦞</span>龙虾养殖基地</div>
       <nav>
-        <a href="#home">首页</a>
-        <a href="#tutorial">养殖教程</a>
-        <a href="#skills">技能仓库</a>
-        <a href="#scenes">应用场景</a>
-        <a href="#about">关于我们</a>
+        <a href="#varieties">品种</a>
+        <a href="#skills">技能</a>
+        <a href="#howto">使用</a>
+        <a href="#about">关于</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-card">
-        <h1>欢迎来到龙虾养殖基地</h1>
-        <p>这里看似是一片温暖的龙虾池，实则是 OpenClaw 的训练与分享中心。我们用“养殖”思路讲 AI 助手：从安装、配置到技能繁育，让你的 OpenClaw 健康成长、聪明好用。</p>
-        <div class="tag-list">
-          <span class="tag">新手友好</span>
-          <span class="tag">教程清晰</span>
-          <span class="tag">技能可扩展</span>
-          <span class="tag">场景丰富</span>
+    <section class="hero">
+      <h1>🦞 你的 AI 养殖专家</h1>
+      <p>像挑选优质龙虾品种一样，选择最适合你的 AI 角色和技能。免费安装，持续更新，让你的 OpenClaw 成为最强大的生产力工具。</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">50+</div>
+          <div class="label">龙虾品种</div>
         </div>
-      </div>
-      <div class="lobster-pond">
-        <h2>今日池塘水质指数</h2>
-        <ul>
-          <li>温度：适合安装 OpenClaw 的舒适环境</li>
-          <li>盐度：配置文件清澈可读，易维护</li>
-          <li>氧气：SKILL 支持充足，拓展能力强</li>
-          <li>活力：应用场景持续上新</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="tutorial">
-      <div class="section-title"><span>🐚</span>养殖教程：如何养 OpenClaw</div>
-      <div class="steps">
-        <div class="step">
-          <span>1</span>
-          <div>
-            <strong>安装池塘</strong>
-            <p>准备好运行环境，下载 OpenClaw 主程序。就像搭建养殖池，保证水源、电力（依赖）齐全。</p>
-          </div>
+        <div class="stat">
+          <div class="num">100+</div>
+          <div class="label">实用技能</div>
         </div>
-        <div class="step">
-          <span>2</span>
-          <div>
-            <strong>配置水质</strong>
-            <p>编辑配置文件，设置模型、路径、权限等。保持配置简洁明确，让 OpenClaw 易于生长。</p>
-          </div>
-        </div>
-        <div class="step">
-          <span>3</span>
-          <div>
-            <strong>投喂指令</strong>
-            <p>用清晰的任务描述喂养 OpenClaw，保证它理解你的需求，就像投喂高蛋白饲料。</p>
-          </div>
-        </div>
-        <div class="step">
-          <span>4</span>
-          <div>
-            <strong>日常巡检</strong>
-            <p>记录日志、复盘结果、迭代配置。养殖基地离不开细心照看。</p>
-          </div>
+        <div class="stat">
+          <div class="num">1000+</div>
+          <div class="label">活跃用户</div>
         </div>
       </div>
     </section>
 
-    <section id="skills">
-      <div class="section-title"><span>🧰</span>技能仓库：SKILL 使用方法</div>
+    <section id="varieties" class="section">
+      <div class="section-header">
+        <div class="section-title"><span>🦞</span>热门龙虾品种</div>
+        <a href="#" class="view-all">查看全部 →</a>
+      </div>
       <div class="grid">
         <div class="card">
-          <h3>技能是什么？</h3>
-          <p>SKILL 是可复用的能力包，类似“龙虾饲料配方”。用对配方，OpenClaw 才能长得快、长得好。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">🎖️</div>
+          <div class="type">CEO 角色</div>
+          <h3>司令龙虾</h3>
+          <p>全局管理者，统筹团队、制定策略、决策执行。像将军一样指挥你的 AI 团队。</p>
+          <div class="tags">
+            <span class="tag">团队管理</span>
+            <span class="tag">战略规划</span>
+            <span class="tag">决策</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
+
         <div class="card">
-          <h3>如何启用？</h3>
-          <p>将技能放入指定目录并在配置中声明，OpenClaw 会自动识别。简单就像往池塘加一把好饲料。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👨‍🍳</div>
+          <div class="type">内容角色</div>
+          <h3>厨师龙虾</h3>
+          <p>内容创作高手，写文案、做教程、生成方案。让你的想法变成精美内容。</p>
+          <div class="tags">
+            <span class="tag">文案写作</span>
+            <span class="tag">教程制作</span>
+            <span class="tag">营销</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
+
         <div class="card">
-          <h3>如何管理？</h3>
-          <p>给技能标注版本、用途与依赖。保持仓库整洁，便于查找与复用。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🔧</div>
+          <div class="type">工程角色</div>
+          <h3>钳工龙虾</h3>
+          <p>编程专家，写代码、调Bug、搭架构。你的专属工程师 24/7 待命。</p>
+          <div class="tags">
+            <span class="tag">代码生成</span>
+            <span class="tag">调试</span>
+            <span class="tag">架构</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
+
         <div class="card">
-          <h3>协作共享</h3>
-          <p>团队共建技能库，形成“生态养殖”。共享最优配方，提升全员生产力。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🔍</div>
+          <div class="type">调研角色</div>
+          <h3>侦察龙虾</h3>
+          <p>信息搜集专家，全网搜索、竞品分析、资料整理。无所不知的情报员。</p>
+          <div class="tags">
+            <span class="tag">搜索</span>
+            <span class="tag">分析</span>
+            <span class="tag">调研</span>
+          </div>
+          <div class="price free">免费</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧹</div>
+          <div class="type">运营角色</div>
+          <h3>管家龙虾</h3>
+          <p>运营全能手，日程管理、数据整理、流程自动化。你的数字管家。</p>
+          <div class="tags">
+            <span class="tag">日程</span>
+            <span class="tag">自动化</span>
+            <span class="tag">效率</span>
+          </div>
+          <div class="price free">免费</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">📚</div>
+          <div class="type">学习角色</div>
+          <h3>学者龙虾</h3>
+          <p>知识导师，解释概念、制定计划、答疑解惑。24小时在线的学习伙伴。</p>
+          <div class="tags">
+            <span class="tag">教学</span>
+            <span class="tag">答疑</span>
+            <span class="tag">辅导</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
       </div>
     </section>
 
-    <section id="scenes">
-      <div class="section-title"><span>🌊</span>应用场景：OpenClaw 的多种用法</div>
+    <section id="skills" class="section">
+      <div class="section-header">
+        <div class="section-title"><span>⚡</span>热门龙虾技能</div>
+        <a href="#" class="view-all">查看全部 →</a>
+      </div>
       <div class="grid">
-        <div class="scenario">
-          <h3>内容养殖场</h3>
-          <p>生成文案、教程、产品介绍等，让 OpenClaw 成为你的内容产卵机。</p>
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💻</div>
+          <div class="type">技能包</div>
+          <h3>编程技能</h3>
+          <p>代码生成、调试、优化。多种语言支持，代码审查自动化。</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Go</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
-        <div class="scenario">
-          <h3>代码孵化室</h3>
-          <p>自动生成脚本、整理日志、写测试，让开发像投喂一样轻松。</p>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🔎</div>
+          <div class="type">技能包</div>
+          <h3>搜索技能</h3>
+          <p>全网语义搜索、精准定位。Exa 强力加持，找到任何你需要的信息。</p>
+          <div class="tags">
+            <span class="tag">搜索</span>
+            <span class="tag">调研</span>
+            <span class="tag">爬虫</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
-        <div class="scenario">
-          <h3>运营巡塘</h3>
-          <p>批量处理需求、总结反馈、规划路线，像巡塘一样高效管理。</p>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">✍️</div>
+          <div class="type">技能包</div>
+          <h3>写作技能</h3>
+          <p>专业文案、文档、报告。根据你的风格定制，创意与专业并存。</p>
+          <div class="tags">
+            <span class="tag">文案</span>
+            <span class="tag">文档</span>
+            <span class="tag">报告</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
-        <div class="scenario">
-          <h3>学习教练</h3>
-          <p>定制学习计划、解释概念、巩固知识，OpenClaw 成为你的学习搭档。</p>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🌐</div>
+          <div class="type">技能包</div>
+          <h3>浏览器技能</h3>
+          <p>网页自动化、填表、截图、数据抓取。像人一样操作浏览器。</p>
+          <div class="tags">
+            <span class="tag">自动化</span>
+            <span class="tag">填表</span>
+            <span class="tag">抓取</span>
+          </div>
+          <div class="price free">免费</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧠</div>
+          <div class="type">技能包</div>
+          <h3>记忆技能</h3>
+          <p>长期记忆、知识管理、偏好学习。你的 AI 会记住你的一切。</p>
+          <div class="tags">
+            <span class="tag">记忆</span>
+            <span class="tag">知识库</span>
+            <span class="tag">偏好</span>
+          </div>
+          <div class="price free">免费</div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">🎨</div>
+          <div class="type">技能包</div>
+          <h3>设计技能</h3>
+          <p>PPT 制作、海报设计、图片生成。让你的想法可视化。</p>
+          <div class="tags">
+            <span class="tag">PPT</span>
+            <span class="tag">设计</span>
+            <span class="tag">图片</span>
+          </div>
+          <div class="price free">免费</div>
         </div>
       </div>
     </section>
 
-    <section id="about">
-      <div class="section-title"><span>🦞</span>关于我们</div>
-      <div class="about">
-        <div>
-          <p>我们是一群热爱自动化、工具与成长的人，把 OpenClaw 当作“龙虾”去呵护、去繁育。希望把最有温度、最实用的 AI 养殖方法分享给你。</p>
-          <p>如果你也想建设自己的养殖基地，欢迎加入，一起养出更聪明的 OpenClaw。</p>
-        </div>
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb199'/%3E%3Cstop offset='1' stop-color='%23ff6f61'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='360' rx='28' fill='url(%23g)'/%3E%3Cpath d='M120 200c30-60 120-90 200-60 80 30 110 110 60 160-40 40-110 40-160 10-70-40-120-50-100-110z' fill='%23fff3e9' opacity='0.8'/%3E%3Ccircle cx='180' cy='170' r='18' fill='%232b6d6a'/%3E%3Ccircle cx='220' cy='160' r='12' fill='%232b6d6a'/%3E%3Ccircle cx='260' cy='155' r='10' fill='%232b6d6a'/%3E%3Ctext x='70' y='310' font-size='28' font-family='Noto Sans SC' fill='%232b6d6a'%3EOpenClaw 养殖基地%3C/text%3E%3C/svg%3E" alt="OpenClaw 养殖基地插画" />
+    <section id="howto" class="section">
+      <div class="section-header">
+        <div class="section-title"><span>📖</span>如何使用</div>
       </div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">1️⃣</div>
+          <h3>选择品种</h3>
+          <p>根据你的需求，选择合适的龙虾品种（AI 角色）</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">2️⃣</div>
+          <h3>安装技能</h3>
+          <p>挑选需要的技能包，让你的龙虾具备各种能力</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">3️⃣</div>
+          <h3>开始使用</h3>
+          <p>配置到你的 OpenClaw，立刻拥有超强生产力</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-header">
+        <div class="section-title"><span>🦞</span>关于龙虾养殖基地</div>
+      </div>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #666; line-height: 1.8;">
+        我们是一个热爱自动化和 AI 的团队，把 OpenClaw 视为"龙虾"精心培养。<br>
+        通过精心挑选的品种和技能，让每个人的 AI 都能发挥最大价值。<br>
+        就像经营一个龙虾养殖基地，我们用心照顾每一只"龙虾"的成长。
+      </p>
     </section>
   </main>
 
-  <div class="bubble" id="scrollTop">回到水面</div>
-
   <footer>
-    <p>龙虾养殖基地 · OpenClaw 教程馆 ｜ 让 AI 成为你的温暖伙伴</p>
+    <p>🦞 龙虾养殖基地 · OpenClaw 角色与技能市场</p>
+    <p style="margin-top: 8px; opacity: 0.6;">让 AI 成为你的温暖伙伴</p>
   </footer>
-
-  <script>
-    const scrollBtn = document.getElementById('scrollTop');
-    scrollBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
 </body>
 </html>
