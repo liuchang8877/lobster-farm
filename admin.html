@@ -21,18 +21,87 @@
       font-family: "Noto Sans SC", sans-serif;
       background: var(--warm-bg);
       color: var(--warm-text);
+      min-height: 100vh;
     }
-    .header {
+    
+    /* 登录页 */
+    .login-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--warm-cream) 0%, var(--warm-bg) 100%);
+    }
+    .login-box {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px var(--shadow);
+      text-align: center;
+      max-width: 360px;
+      width: 90%;
+    }
+    .login-icon { font-size: 60px; margin-bottom: 20px; }
+    .login-box h2 { color: var(--warm-brown); margin: 0 0 24px; }
+    .login-input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid var(--warm-cream);
+      border-radius: 14px;
+      font-size: 16px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .login-input:focus { outline: none; border-color: var(--warm-coral); }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--warm-coral), var(--warm-orange));
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login-error { color: #f44336; font-size: 14px; margin-top: 12px; }
+    
+    /* 管理页 */
+    .admin-header {
       background: linear-gradient(135deg, var(--warm-coral), var(--warm-orange));
       color: #fff;
       padding: 20px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .header h1 { margin: 0; }
+    .admin-header h1 { margin: 0; font-size: 20px; }
+    .logout-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    
     .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
     
-    /* 标签切换 */
-    .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+    /* 统计 */
+    .stats-row { display: flex; gap: 20px; margin-bottom: 30px; }
+    .stat-box {
+      flex: 1;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+    .stat-num { font-size: 32px; font-weight: 800; color: var(--warm-coral); }
+    .stat-label { color: var(--warm-muted); font-size: 14px; }
+    
+    /* 标签 */
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
     .tab {
       padding: 12px 24px;
       background: #fff;
@@ -48,135 +117,94 @@
     .list { display: none; }
     .list.active { display: block; }
     
-    /* 审核卡片 */
-    .review-card {
+    /* 卡片 */
+    .card {
       background: #fff;
       border-radius: 16px;
       padding: 20px;
       margin-bottom: 16px;
       box-shadow: 0 4px 16px var(--shadow);
     }
-    .review-header {
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
     }
-    .review-header h3 { margin: 0; color: var(--warm-brown); }
-    .review-type {
+    .card-header h3 { margin: 0; color: var(--warm-brown); }
+    .type-tag {
       background: var(--warm-cream);
       color: var(--warm-coral);
       padding: 4px 12px;
       border-radius: 20px;
       font-size: 12px;
     }
-    .review-desc { color: var(--warm-muted); margin-bottom: 12px; }
-    .review-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-    .review-tag {
-      background: var(--warm-cream);
-      color: var(--warm-brown);
-      padding: 4px 10px;
-      border-radius: 15px;
-      font-size: 12px;
-    }
-    .review-actions { display: flex; gap: 12px; }
-    .btn {
-      padding: 10px 24px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.2s;
-    }
-    .btn:hover { transform: scale(1.05); }
+    .status-pending { background: #FFF3E0; color: #FF9800; padding: 4px 12px; border-radius: 15px; font-size: 12px; }
+    .status-approved { background: #E8F5E9; color: #4CAF50; padding: 4px 12px; border-radius: 15px; font-size: 12px; }
+    .status-rejected { background: #FFEBEE; color: #f44336; padding: 4px 12px; border-radius: 15px; font-size: 12px; }
+    .card-desc { color: var(--warm-muted); margin-bottom: 12px; }
+    .card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .card-tag { background: var(--warm-cream); color: var(--warm-brown); padding: 4px 10px; border-radius: 15px; font-size: 12px; }
+    .card-actions { display: flex; gap: 12px; }
+    .btn { padding: 10px 24px; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; }
     .btn-approve { background: #4CAF50; color: #fff; }
     .btn-reject { background: #f44336; color: #fff; }
-    .btn-view { background: var(--warm-coral); color: #fff; }
-    
     .empty { text-align: center; padding: 60px; color: var(--warm-muted); }
     
-    /* 统计 */
-    .stats-row { display: flex; gap: 20px; margin-bottom: 30px; }
-    .stat-box {
-      flex: 1;
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 16px var(--shadow);
-    }
-    .stat-num { font-size: 32px; font-weight: 800; color: var(--warm-coral); }
- { color    .stat-label: var(--warm-muted); font-size: 14px; }
-    
-    /* 状态标签 */
-    .status { padding: 4px 10px; border-radius: 15px; font-size: 12px; }
-    .status-pending { background: #FFF3E0; color: #FF9800; }
-    .status-approved { background: #E8F5E9; color: #4CAF50; }
-    .status-rejected { background: #FFEBEE; color: #f44336; }
-    
-    /* 我的上传 */
-    .my-upload-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 4px 16px var(--shadow);
-    }
-    .my-upload-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    /* 登录表单 */
+    .login-form { display: block; }
+    .admin-content { display: none; }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>🦞 审核管理中心</h1>
+  <!-- 登录页 -->
+  <div class="login-page" id="loginPage">
+    <div class="login-box">
+      <div class="login-icon">🔐</div>
+      <h2>管理员登录</h2>
+      <input type="password" class="login-input" id="password" placeholder="请输入管理员密码">
+      <button class="login-btn" onclick="doLogin()">登录</button>
+      <p class="login-error" id="loginError"></p>
+    </div>
   </div>
   
-  <div class="container">
-    <!-- 统计 -->
-    <div class="stats-row">
-      <div class="stat-box">
-        <div class="stat-num" id="pendingCount">0</div>
-        <div class="stat-label">待审核</div>
+  <!-- 管理页 -->
+  <div class="admin-content" id="adminContent">
+    <div class="admin-header">
+      <h1>🦞 审核管理中心</h1>
+      <button class="logout-btn" onclick="logout()">退出登录</button>
+    </div>
+    
+    <div class="container">
+      <!-- 统计 -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num" id="pendingCount">0</div>
+          <div class="stat-label">待审核</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="approvedCount">0</div>
+          <div class="stat-label">已通过</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="rejectedCount">0</div>
+          <div class="stat-label">已拒绝</div>
+        </div>
       </div>
-      <div class="stat-box">
-        <div class="stat-num" id="approvedCount">0</div>
-        <div class="stat-label">已通过</div>
+      
+      <!-- 切换 -->
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('pending')">待审核</button>
+        <button class="tab" onclick="switchTab('approved')">已通过</button>
+        <button class="tab" onclick="switchTab('rejected')">已拒绝</button>
+        <button class="tab" onclick="switchTab('my')">我的上传</button>
       </div>
-      <div class="stat-box">
-        <div class="stat-num" id="rejectedCount">0</div>
-        <div class="stat-label">已拒绝</div>
-      </div>
-    </div>
-    
-    <!-- 切换 -->
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab('pending')">待审核</button>
-      <button class="tab" onclick="switchTab('approved')">已通过</button>
-      <button class="tab" onclick="switchTab('rejected')">已拒绝</button>
-      <button class="tab" onclick="switchTab('my')">我的上传</button>
-    </div>
-    
-    <!-- 待审核 -->
-    <div class="list active" id="pendingList">
-      <div class="empty">暂无待审核内容</div>
-    </div>
-    
-    <!-- 已通过 -->
-    <div class="list" id="approvedList">
-      <div class="empty">暂无内容</div>
-    </div>
-    
-    <!-- 已拒绝 -->
-    <div class="list" id="rejectedList">
-      <div class="empty">暂无内容</div>
-    </div>
-    
-    <!-- 我的上传 -->
-    <div class="list" id="myList">
-      <div class="empty">暂无上传记录</div>
+      
+      <!-- 列表 -->
+      <div class="list active" id="pendingList"><div class="empty">暂无待审核内容</div></div>
+      <div class="list" id="approvedList"><div class="empty">暂无内容</div></div>
+      <div class="list" id="rejectedList"><div class="empty">暂无内容</div></div>
+      <div class="list" id="myList"><div class="empty">暂无上传记录</div></div>
     </div>
   </div>
 
@@ -185,11 +213,48 @@
     const SUPABASE_URL = 'https://thpamcdbcfnmhvnmvhtc.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRocGFtY2RiY2ZubWh2bm12aHRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNTg5MTIsImV4cCI6MjA4NzczNDkxMn0.7Mgl8AE6au-ICi22U8R7u2MFQqKyd1EP0-a-PsC6c2w';
     
+    const ADMIN_PASSWORD = 'lobster2026'; // 管理员密码
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    
+    // 检查登录状态
+    function checkAuth() {
+      const isLoggedIn = localStorage.getItem('lobster_admin_logged_in');
+      if (isLoggedIn === 'true') {
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('adminContent').style.display = 'block';
+        loadData();
+      } else {
+        document.getElementById('loginPage').style.display = 'flex';
+        document.getElementById('adminContent').style.display = 'none';
+      }
+    }
+    
+    // 登录
+    function doLogin() {
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('loginError');
+      
+      if (password === ADMIN_PASSWORD) {
+        localStorage.setItem('lobster_admin_logged_in', 'true');
+        checkAuth();
+      } else {
+        errorEl.textContent = '密码错误，请重试';
+      }
+    }
+    
+    // 退出
+    function logout() {
+      localStorage.removeItem('lobster_admin_logged_in');
+      checkAuth();
+    }
+    
+    // 回车登录
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') doLogin();
+    });
     
     // 加载数据
     async function loadData() {
-      // 统计
       const [pending, approved, rejected] = await Promise.all([
         supabase.from('skills').select('*', { count: 'exact', head: true }).eq('status', 'pending'),
         supabase.from('skills').select('*', { count: 'exact', head: true }).eq('status', 'approved'),
@@ -200,11 +265,10 @@
       document.getElementById('approvedCount').textContent = approved.count || 0;
       document.getElementById('rejectedCount').textContent = rejected.count || 0;
       
-      // 加载列表
       const [pData, aData, rData] = await Promise.all([
         supabase.from('skills').select('*').eq('status', 'pending').order('created_at', { ascending: false }),
-        supabase.from('skills').select('*').eq('status', 'approved').order('created_at', { ascending: false }).limit(20),
-        supabase.from('skills').select('*').eq('status', 'rejected').order('created_at', { ascending: false }).limit(20)
+        supabase.from('skills').select('*').eq('status', 'approved').order('created_at', { ascending: false }).limit(50),
+        supabase.from('skills').select('*').eq('status', 'rejected').order('created_at', { ascending: false }).limit(50)
       ]);
       
       renderList('pendingList', pData.data || []);
@@ -213,7 +277,6 @@
       renderList('myList', [...(aData.data||[]), ...(rData.data||[]), ...(pData.data||[])]);
     }
     
-    // 渲染列表
     function renderList(elementId, data) {
       const container = document.getElementById(elementId);
       if (!data || data.length === 0) {
@@ -222,17 +285,19 @@
       }
       
       container.innerHTML = data.map(item => `
-        <div class="my-upload-card">
-          <div class="my-upload-header">
+        <div class="card">
+          <div class="card-header">
             <h3>${item.name}</h3>
-            <span class="status status-${item.status}">${item.status === 'pending' ? '待审核' : item.status === 'approved' ? '已通过' : '已拒绝'}</span>
+            <div>
+              <span class="type-tag">${item.type}</span>
+              <span class="status-${item.status}">${item.status === 'pending' ? '待审核' : item.status === 'approved' ? '已通过' : '已拒绝'}</span>
+            </div>
           </div>
-          <p class="review-desc">${item.description || '暂无描述'}</p>
-          <div class="review-tags">
-            <span class="review-type">${item.type}</span>
-            ${(item.tags || []).map(t => `<span class="review-tag">${t}</span>`).join('')}
+          <p class="card-desc">${item.description || '暂无描述'}</p>
+          <div class="card-tags">
+            ${(item.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('')}
           </div>
-          <div class="review-actions">
+          <div class="card-actions">
             ${item.status === 'pending' ? `
               <button class="btn btn-approve" onclick="approveSkill('${item.id}')">✅ 通过</button>
               <button class="btn btn-reject" onclick="rejectSkill('${item.id}')">❌ 拒绝</button>
@@ -242,52 +307,34 @@
       `).join('');
     }
     
-    // 切换标签
     function switchTab(tab) {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.list').forEach(l => l.classList.remove('active'));
-      
       event.target.classList.add('active');
       document.getElementById(tab + 'List').classList.add('active');
     }
     
-    // 审核通过
     async function approveSkill(id) {
       if (!confirm('确认通过此技能？')) return;
-      
-      const { error } = await supabase
-        .from('skills')
-        .update({ status: 'approved' })
-        .eq('id', id);
-      
+      const { error } = await supabase.from('skills').update({ status: 'approved' }).eq('id', id);
       if (!error) {
         alert('✅ 已通过审核！');
         loadData();
-      } else {
-        alert('❌ 操作失败');
       }
     }
     
-    // 审核拒绝
     async function rejectSkill(id) {
       const reason = prompt('请输入拒绝原因：');
       if (!reason) return;
-      
-      const { error } = await supabase
-        .from('skills')
-        .update({ status: 'rejected', status_message: reason })
-        .eq('id', id);
-      
+      const { error } = await supabase.from('skills').update({ status: 'rejected', status_message: reason }).eq('id', id);
       if (!error) {
         alert('❌ 已拒绝');
         loadData();
-      } else {
-        alert('❌ 操作失败');
       }
     }
     
     // 初始化
-    loadData();
+    checkAuth();
   </script>
 </body>
 </html>
