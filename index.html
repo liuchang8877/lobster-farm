@@ -573,88 +573,67 @@
   </footer>
 
   <!-- Supabase SDK -->
+  
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3"></script>
   <script>
-    // 配置
-    const SUPABASE_URL = 'https://thpamcdbcfnmhvnmvhtc.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRocGFtY2RiY2ZubWh2bm12aHRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNTg5MTIsImV4cCI6MjA4NzczNDkxMn0.7Mgl8AE6au-ICi22U8R7u2MFQqKyd1EP0-a-PsC6c2w';
-    
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    
-    // 上传技能
-    async function uploadSkill(data) {
-      const { error } = await supabase.from('skills').insert([{
-        name: data.name,
-        type: data.type,
-        description: data.description,
-        tags: data.tags,
-        status: 'pending',
-        power_reward: 10
-      }]);
-      return !error;
-    }
-    
-    // 表单提交
-    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const btn = form.querySelector('.submit-btn');
-      
-      btn.disabled = true;
-      btn.textContent = '提交中...';
-      
-      const tags = document.getElementById('skillTags').value
-        .split(',').map(t => t.trim()).filter(t => t);
-      
-      const success = await uploadSkill({
-        console.log('上传数据:', {
-        name: document.getElementById('skillName').value,
-        type: document.getElementById('skillType').value,
-        description: document.getElementById('skillDesc').value,
-        tags: tags
-      });
-      
-      btn.disabled = false;
-      btn.textContent = '🚀 提交审核';
-      
-      console.log('上传结果:', success);
-      if (success) {
-        alert('🎉 提交成功！\n\n技能已提交审核，\n通过后将自动上架并发放算力奖励。');
-        form.reset();
-      } else {
-        alert('❌ 提交失败，请稍后重试');
-      }
-    });
-    
+    var supabase = window.supabase.createClient(
+      'https://thpamcdbcfnmhvnmvhtc.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRocGFtY2RiY2ZubWh2bm12aHRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNTg5MTIsImV4cCI6MjA4NzczNDkxMn0.7Mgl8AE6au-ICi22U8R7u2MFQqKyd1EP0-a-PsC6c2w'
+    );
     
     // 加载技能列表
-    async function loadSkills() {
-      try {
-        const { data, error } = await supabase.from('skills').select('*').eq('status', 'approved').order('downloads', { ascending: false });
-        if (error) { console.error('查询错误:', error); return; }
-        if (!data) { console.log('无数据'); return; }
-        console.log('获取到技能数:', data.length);
-        
-        const grid = document.getElementById('skillsGrid1');
-        if (!grid) return;
-        
-        const icons = {'编程': '💻', '搜索': '🔍', '写作': '✍️', '浏览器': '🌐', '记忆': '🧠', '设计': '🎨'};
-        const colors = {'编程': 'linear-gradient(135deg, #FFE5D9, #FFCDB2)', '搜索': 'linear-gradient(135deg, #E8F5E9, #C8E6C9)', '写作': 'linear-gradient(135deg, #FFF3E0, #FFE0B2)', '浏览器': 'linear-gradient(135deg, #E3F2FD, #BBDEFB)', '记忆': 'linear-gradient(135deg, #F3E5F5, #E1BEE7)', '设计': 'linear-gradient(135deg, #FCE4EC, #F8BBD9)'};
-        
-        console.log('渲染技能列表, 数量:', data.length); grid.innerHTML = data.map(s => `
-          <div class="card">
-            <div class="card-icon" style="background: ${colors[s.type] || colors['编程']}">${icons[s.type] || '⚡'}</div>
-            <h3>${s.name}</h3>
-            <p>${s.description || '暂无描述'}</p>
-            <div class="tags">${(s.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
-          </div>
-        `).join('');
-      } catch(e) { console.error('loadSkills error:', e); }
+    function loadSkills() {
+      supabase.from('skills').select('*').eq('status', 'approved').order('downloads', { ascending: false })
+        .then(function(res) {
+          var data = res.data;
+          var grid = document.getElementById('skillsGrid1');
+          if (!grid || !data) return;
+          
+          var icons = {'编程': '💻', '搜索': '🔍', '写作': '✍️', '浏览器': '🌐', '记忆': '🧠', '设计': '🎨'};
+          var colors = {
+            '编程': 'linear-gradient(135deg, #FFE5D9, #FFCDB2)',
+            '搜索': 'linear-gradient(135deg, #E8F5E9, #C8E6C9)',
+            '写作': 'linear-gradient(135deg, #FFF3E0, #FFE0B2)',
+            '浏览器': 'linear-gradient(135deg, #E3F2FD, #BBDEFB)',
+            '记忆': 'linear-gradient(135deg, #F3E5F5, #E1BEE7)',
+            '设计': 'linear-gradient(135deg, #FCE4EC, #F8BBD9)'
+          };
+          
+          grid.innerHTML = data.map(function(s) {
+            var icon = icons[s.type] || '⚡';
+            var color = colors[s.type] || colors['编程'];
+            var tags = (s.tags || []).map(function(t) { return '<span class="tag">' + t + '</span>'; }).join('');
+            return '<div class="card"><div class="card-icon" style="background:' + color + '">' + icon + '</div><h3>' + s.name + '</h3><p>' + (s.description || '暂无描述') + '</p><div class="tags">' + tags + '</div></div>';
+          }).join('');
+        })
+        .catch(function(e) { console.error(e); });
     }
     
-    window.onload = function() { loadSkills(); }; console.log("页面加载完成 v5");
-
-    console.log('🦞 温暖虾塘已就绪');
+    // 上传技能
+    function uploadSkill() {
+      var name = document.getElementById('skillName').value;
+      var type = document.getElementById('skillType').value;
+      var desc = document.getElementById('skillDesc').value;
+      var tags = document.getElementById('skillTags').value.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t; });
+      
+      supabase.from('skills').insert([{
+        name: name,
+        type: type,
+        description: desc,
+        tags: tags,
+        status: 'pending',
+        power_reward: 10
+      }]).then(function() {
+        alert('提交成功！审核通过后将在首页展示。');
+        document.getElementById('uploadForm').reset();
+      }).catch(function(e) { alert('提交失败: ' + e.message); });
+    }
+    
+    // 页面加载后执行
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSkills();
+    });
   </script>
+
 </body>
 </html>
