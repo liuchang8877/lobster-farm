@@ -701,3 +701,80 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <!-- 自定义 JS -->
 <script src="js/supabase.js"></script>
+<script src="js/workflow.js"></script>
+
+<!-- 管理员审核面板 -->
+<section id="admin" class="section" style="display:none;">
+  <div class="section-header">
+    <div class="section-title"><span>⚙️</span>技能审核管理</div>
+    <div class="section-desc">管理员专用面板</div>
+  </div>
+  
+  <div id="admin-panel">
+    <p style="text-align:center;color:#888;">加载中...</p>
+  </div>
+  
+  <div style="margin-top:32px;">
+    <h4>开启管理员模式：</h4>
+    <input type="password" id="adminPassword" placeholder="输入管理员密码" style="padding:12px;border-radius:8px;border:2px solid #ddd;">
+    <button onclick="enableAdmin()" style="padding:12px 24px;background:var(--sea);color:#fff;border:none;border-radius:8px;cursor:pointer;">确认</button>
+  </div>
+</section>
+
+<script>
+function enableAdmin() {
+  const pwd = document.getElementById('adminPassword').value;
+  if (pwd === 'lobster2026') {
+    localStorage.setItem('lobster_admin', 'true');
+    document.getElementById('admin').style.display = 'block';
+    renderAdminPanel();
+  } else {
+    alert('密码错误');
+  }
+}
+
+// 检查是否是管理员
+if (localStorage.getItem('lobster_admin') === 'true') {
+  document.getElementById('admin').style.display = 'block';
+}
+</script>
+
+<style>
+.review-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.review-header h4 { margin: 0; color: var(--sea); }
+.review-desc { color: #666; margin: 12px 0; }
+.review-tags { margin: 12px 0; }
+.review-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.btn-approve {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-reject {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+</style>
