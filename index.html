@@ -77,6 +77,18 @@
       margin: 0 auto 32px;
       line-height: 1.7;
     }
+    .hero .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 8px;
+      transition: transform 0.2s;
+    }
+    .hero .btn:hover { transform: translateY(-2px); }
+    .hero .btn-primary { background: var(--sea); color: #fff; }
+    .hero .btn-secondary { background: var(--coral); color: #fff; }
 
     .section {
       max-width: 1200px;
@@ -113,7 +125,6 @@
       padding: 28px;
       box-shadow: 0 8px 32px var(--shadow);
       transition: transform 0.3s, box-shadow 0.3s;
-      cursor: pointer;
     }
     .card:hover {
       transform: translateY(-8px);
@@ -194,22 +205,133 @@
       color: #fff;
     }
 
-    .intro {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 24px;
+    /* 创作者区域 */
+    .creator-section {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 8px 32px var(--shadow);
+      margin-bottom: 40px;
+    }
+    .creator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .creator-card {
+      background: linear-gradient(135deg, var(--foam), #fff);
+      border-radius: 16px;
+      padding: 24px;
+      border: 2px solid var(--sand);
+    }
+    .creator-card h4 {
+      margin: 0 0 12px;
+      color: var(--sea);
+      font-size: 18px;
+    }
+    .creator-card p {
+      color: #666;
+      font-size: 14px;
+      margin: 0;
+    }
+    .creator-card .icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* 算力值 */
+    .power-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin: 32px 0;
+    }
+    .power-stat {
       text-align: center;
     }
-    .intro h2 {
-      font-size: 32px;
+    .power-stat .value {
+      font-size: 36px;
+      font-weight: 800;
       color: var(--sea);
-      margin: 0 0 16px;
     }
-    .intro p {
-      color: #666;
-      line-height: 1.8;
+    .power-stat .label {
+      font-size: 14px;
+      color: #888;
+    }
+
+    /* 排行榜 */
+    .leaderboard {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--foam);
+    }
+    .leaderboard-item:last-child { border-bottom: none; }
+    .leaderboard-item .rank {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 16px;
+    }
+    .leaderboard-item .rank.gold { background: linear-gradient(135deg, #ffd700, #ffb700); color: #fff; }
+    .leaderboard-item .rank.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #fff; }
+    .leaderboard-item .rank.bronze { background: linear-gradient(135deg, #cd7f32, #b87333); color: #fff; }
+    .leaderboard-item .rank.normal { background: var(--foam); color: var(--sea); }
+    .leaderboard-item .info { flex: 1; }
+    .leaderboard-item .name { font-weight: 600; }
+    .leaderboard-item .skill-count { font-size: 12px; color: #888; }
+    .leaderboard-item .power { font-weight: 700; color: var(--sea); }
+
+    /* 上传表单 */
+    .upload-form {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--foam);
+      border-radius: 12px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--sea);
+    }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-btn {
+      background: var(--sea);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 30px;
       font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
+    .form-btn:hover { transform: translateY(-2px); }
 
     footer {
       background: var(--sea);
@@ -234,6 +356,7 @@
         <a href="#varieties">品种</a>
         <a href="#skills">技能</a>
         <a href="#waters">水域</a>
+        <a href="#creator">创作者</a>
         <a href="#about">关于</a>
       </nav>
     </div>
@@ -243,9 +366,23 @@
     <section class="hero">
       <h1>🦞 你的 AI 养殖专家</h1>
       <p>像挑选优质龙虾品种一样，选择最适合你的 AI 角色。<br>像学习龙虾技能一样，掌握 OpenClaw 的各种能力。<br>像选择水域一样，找到最适合你的使用场景。</p>
-      <div style="margin-top: 32px;">
-        <a href="#varieties" style="background: var(--sea); color: #fff; padding: 14px 32px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-right: 16px; display: inline-block;">�浏览技能</a>
-        <a href="#about" style="background: var(--coral); color: #fff; padding: 14px 32px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-block;">🚀 成为创作者</a>
+      <div>
+        <a href="#varieties" class="btn btn-primary">🦞 浏览技能</a>
+        <a href="#creator" class="btn btn-secondary">🚀 成为创作者</a>
+      </div>
+      <div class="power-stats">
+        <div class="power-stat">
+          <div class="value">50+</div>
+          <div class="label">龙虾品种</div>
+        </div>
+        <div class="power-stat">
+          <div class="value">100+</div>
+          <div class="label">实用技能</div>
+        </div>
+        <div class="power-stat">
+          <div class="value">1000+</div>
+          <div class="label">活跃用户</div>
+        </div>
       </div>
     </section>
 
@@ -260,71 +397,60 @@
           <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">🎖️</div>
           <div class="type">CEO 品种</div>
           <h3>司令龙虾</h3>
-          <p>全局管理者，统筹团队、制定策略、决策执行。像将军一样指挥你的 AI 团队。</p>
+          <p>全局管理者，统筹团队、制定策略、决策执行。</p>
           <div class="tags">
             <span class="tag">团队管理</span>
             <span class="tag">战略规划</span>
-            <span class="tag">决策</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👨‍🍳</div>
           <div class="type">内容品种</div>
           <h3>厨师龙虾</h3>
-          <p>内容创作高手，写文案，做教程、生成方案。让你的想法变成精美内容。</p>
+          <p>内容创作高手，写文案，做教程、生成方案。</p>
           <div class="tags">
             <span class="tag">文案写作</span>
             <span class="tag">教程制作</span>
-            <span class="tag">营销</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🔧</div>
           <div class="type">工程品种</div>
           <h3>钳工龙虾</h3>
-          <p>编程专家，写代码、调Bug、搭架构。你的专属工程师 24/7 待命。</p>
+          <p>编程专家，写代码、调Bug、搭架构。</p>
           <div class="tags">
             <span class="tag">代码生成</span>
             <span class="tag">调试</span>
-            <span class="tag">架构</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🔍</div>
           <div class="type">调研品种</div>
           <h3>侦察龙虾</h3>
-          <p>信息搜集专家，全网搜索、竞品分析、资料整理。无所不知的情报员。</p>
+          <p>信息搜集专家，全网搜索、竞品分析。</p>
           <div class="tags">
             <span class="tag">搜索</span>
             <span class="tag">分析</span>
-            <span class="tag">调研</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧹</div>
           <div class="type">运营品种</div>
           <h3>管家龙虾</h3>
-          <p>运营全能手，日程管理、数据整理、流程自动化。你的数字管家。</p>
+          <p>运营全能手，日程管理、数据整理、自动化。</p>
           <div class="tags">
             <span class="tag">日程</span>
             <span class="tag">自动化</span>
-            <span class="tag">效率</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">📚</div>
           <div class="type">学习品种</div>
           <h3>学者龙虾</h3>
-          <p>知识导师，解释概念、制定计划、答疑解惑。24小时在线的学习伙伴。</p>
+          <p>知识导师，解释概念、制定计划、答疑解惑。</p>
           <div class="tags">
             <span class="tag">教学</span>
             <span class="tag">答疑</span>
-            <span class="tag">辅导</span>
           </div>
         </div>
       </div>
@@ -339,73 +465,56 @@
       <div class="grid">
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💻</div>
-          <div class="type">技能包</div>
           <h3>编程技能</h3>
-          <p>代码生成、调试、优化。多种语言支持，代码审查自动化。</p>
+          <p>代码生成、调试、优化。多种语言支持。</p>
           <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">JavaScript</span>
-            <span class="tag">Go</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🔎</div>
-          <div class="type">技能包</div>
           <h3>搜索技能</h3>
-          <p>全网语义搜索、精准定位。Exa 强力加持，找到任何你需要的信息。</p>
+          <p>全网语义搜索、精准定位。Exa 加持。</p>
           <div class="tags">
             <span class="tag">搜索</span>
             <span class="tag">调研</span>
-            <span class="tag">爬虫</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">✍️</div>
-          <div class="type">技能包</div>
           <h3>写作技能</h3>
-          <p>专业文案、文档、报告。根据你的风格定制，创意与专业并存。</p>
+          <p>专业文案、文档、报告。风格定制。</p>
           <div class="tags">
             <span class="tag">文案</span>
             <span class="tag">文档</span>
-            <span class="tag">报告</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🌐</div>
-          <div class="type">技能包</div>
           <h3>浏览器技能</h3>
-          <p>网页自动化、填表、截图、数据抓取。像人一样操作浏览器。</p>
+          <p>网页自动化、填表、截图、数据抓取。</p>
           <div class="tags">
             <span class="tag">自动化</span>
-            <span class="tag">填表</span>
             <span class="tag">抓取</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧠</div>
-          <div class="type">技能包</div>
           <h3>记忆技能</h3>
-          <p>长期记忆、知识管理、偏好学习。你的 AI 会记住你的一切。</p>
+          <p>长期记忆、知识管理、偏好学习。</p>
           <div class="tags">
             <span class="tag">记忆</span>
             <span class="tag">知识库</span>
-            <span class="tag">偏好</span>
           </div>
         </div>
-
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">🎨</div>
-          <div class="type">技能包</div>
           <h3>设计技能</h3>
-          <p>PPT 制作、海报设计、图片生成。让你的想法可视化。</p>
+          <p>PPT 制作、海报设计、图片生成。</p>
           <div class="tags">
             <span class="tag">PPT</span>
             <span class="tag">设计</span>
-            <span class="tag">图片</span>
           </div>
         </div>
       </div>
@@ -420,77 +529,157 @@
       <div class="grid">
         <div class="scene-card">
           <h3>🏢 企业水域</h3>
-          <p>团队协作、项目管理、客服响应。让 AI 成为你的企业助手，提升整体效率。</p>
+          <p>团队协作、项目管理、客服响应。让 AI 成为你的企业助手。</p>
           <div class="tags">
             <span class="tag">团队协作</span>
             <span class="tag">项目管理</span>
-            <span class="tag">客服</span>
           </div>
         </div>
-
         <div class="scene-card">
           <h3>🏠 个人工作室</h3>
-          <p>独立开发、内容创作、个人品牌。让 AI 成为你的私人工作室，一个人顶一个团队。</p>
+          <p>独立开发、内容创作、个人品牌。一个人顶一个团队。</p>
           <div class="tags">
             <span class="tag">独立开发</span>
             <span class="tag">内容创作</span>
-            <span class="tag">个人品牌</span>
           </div>
         </div>
-
         <div class="scene-card">
           <h3>🎓 学术研究</h3>
-          <p>文献调研、论文写作、知识探索。让 AI 成为你的研究伙伴，加速学术进程。</p>
+          <p>文献调研、论文写作、知识探索。加速学术进程。</p>
           <div class="tags">
             <span class="tag">文献调研</span>
             <span class="tag">论文</span>
-            <span class="tag">知识探索</span>
           </div>
         </div>
-
         <div class="scene-card">
           <h3>🛒 电商运营</h3>
-          <p>商品描述、客服话术、数据分析。让 AI 成为你的电商运营专家，提升转化率。</p>
+          <p>商品描述、客服话术、数据分析。提升转化率。</p>
           <div class="tags">
             <span class="tag">商品描述</span>
             <span class="tag">客服</span>
-            <span class="tag">数据分析</span>
-          </div>
-        </div>
-
-        <div class="scene-card">
-          <h3>💰 金融分析</h3>
-          <p>市场调研、报告撰写、风险评估。让 AI 成为你的金融分析师，辅助投资决策。</p>
-          <div class="tags">
-            <span class="tag">市场调研</span>
-            <span class="tag">报告</span>
-            <span class="tag">风险评估</span>
-          </div>
-        </div>
-
-        <div class="scene-card">
-          <h3>🏥 医疗健康</h3>
-          <p>健康咨询、医学知识、患者教育。让 AI 成为你的健康顾问，提供专业建议。</p>
-          <div class="tags">
-            <span class="tag">健康咨询</span>
-            <span class="tag">医学知识</span>
-            <span class="tag">患者教育</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="intro">
-      <h2>🦞 关于龙虾养殖基地</h2>
-      <p>我们是一个热爱自动化和 AI 的团队，把 OpenClaw 视为"龙虾"精心培养。<br>
-      龙虾品种 = AI 角色，让 AI 有性格<br>
-      龙虾技能 = SKILL，让 AI 有能力<br>
-      龙虾水域 = 使用场景，让 AI 有用武之地<br><br>
-      <b>🎁 创作者激励计划</b><br>
-      免费分享：任何人都可以免费使用所有技能<br>
-      算力奖励：创作者上传技能可获得算力值<br>
-      排行榜：热门创作者可上榜展示<br><br>
-      就像经营一个龙虾养殖基地，我们用心照顾每一只"龙虾"的成长。</p>
+    <!-- 创作者中心 -->
+    <section id="creator" class="section">
+      <div class="section-header">
+        <div class="section-title"><span>🚀</span>创作者中心</div>
+        <div class="section-desc">上传你的技能，成为龙虾养殖基地的贡献者</div>
+      </div>
+
+      <!-- 创作者激励 -->
+      <div class="creator-section">
+        <h3 style="margin: 0 0 16px; color: var(--sea);">🎁 创作者激励计划</h3>
+        <div class="creator-grid">
+          <div class="creator-card">
+            <div class="icon">🆓</div>
+            <h4>免费分享</h4>
+            <p>任何人都可以免费使用所有技能，降低使用门槛</p>
+          </div>
+          <div class="creator-card">
+            <div class="icon">⚡</div>
+            <h4>算力奖励</h4>
+            <p>上传技能可获得算力值，用于你自己的 OpenClaw</p>
+          </div>
+          <div class="creator-card">
+            <div class="icon">🏆</div>
+            <h4>排行榜</h4>
+            <p>热门创作者上榜展示，获得荣誉和曝光</p>
+          </div>
+          <div class="creator-card">
+            <div class="icon">🔄</div>
+            <h4>版本更新</h4>
+            <p>随时更新你的技能，下载者自动获得最新版本</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 排行榜 -->
+      <div class="section-header" style="margin-top: 40px;">
+        <div class="section-title"><span>🏆</span>创作者排行榜</div>
+      </div>
+      <div class="leaderboard">
+        <div class="leaderboard-item">
+          <div class="rank gold">1</div>
+          <div class="info">
+            <div class="name">🦞 张三的养殖场</div>
+            <div class="skill-count">贡献 12 个技能</div>
+          </div>
+          <div class="power">+1200 算力</div>
+        </div>
+        <div class="leaderboard-item">
+          <div class="rank silver">2</div>
+          <div class="info">
+            <div class="name">🦞 李四的池塘</div>
+            <div class="skill-count">贡献 8 个技能</div>
+          </div>
+          <div class="power">+800 算力</div>
+        </div>
+        <div class="leaderboard-item">
+          <div class="rank bronze">3</div>
+          <div class="info">
+            <div class="name">🦞 王五的渔场</div>
+            <div class="skill-count">贡献 5 个技能</div>
+          </div>
+          <div class="power">+500 算力</div>
+        </div>
+        <div class="leaderboard-item">
+          <div class="rank normal">4</div>
+          <div class="info">
+            <div class="name">🦞 赵六的虾塘</div>
+            <div class="skill-count">贡献 3 个技能</div>
+          </div>
+          <div class="power">+300 算力</div>
+        </div>
+      </div>
+
+      <!-- 上传表单 -->
+      <div class="section-header" style="margin-top: 40px;">
+        <div class="section-title"><span>📤</span>上传技能</div>
+      </div>
+      <div class="upload-form">
+        <form id="uploadForm">
+          <div class="form-group">
+            <label>技能名称</label>
+            <input type="text" placeholder="例如：高级编程技能包" required>
+          </div>
+          <div class="form-group">
+            <label>技能类型</label>
+            <select>
+              <option>编程技能</option>
+              <option>搜索技能</option>
+              <option>写作技能</option>
+              <option>浏览器技能</option>
+              <option>记忆技能</option>
+              <option>设计技能</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>技能描述</label>
+            <textarea placeholder="详细描述这个技能的功能和使用方法..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label>技能文件 (SKILL.md)</label>
+            <input type="file" accept=".md,.txt">
+          </div>
+          <button type="submit" class="form-btn">🚀 上传技能</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 关于 -->
+    <section id="about" class="section" style="text-align: center; max-width: 800px;">
+      <h2 style="color: var(--sea); margin-bottom: 16px;">🦞 关于龙虾养殖基地</h2>
+      <p style="color: #666; line-height: 1.8;">
+        我们是一个热爱自动化和 AI 的团队，把 OpenClaw 视为"龙虾"精心培养。<br>
+        <b>龙虾品种 = AI 角色</b>，让 AI 有性格<br>
+        <b>龙虾技能 = SKILL</b>，让 AI 有能力<br>
+        <b>龙虾水域 = 使用场景</b>，让 AI 有用武之地<br><br>
+        用心照顾每一只"龙虾"的成长，让 AI 成为你的温暖伙伴。
+      </p>
     </section>
   </main>
 
@@ -498,5 +687,12 @@
     <p>🦞 龙虾养殖基地 · OpenClaw 角色与技能市场</p>
     <p style="margin-top: 8px; opacity: 0.6;">品种 · 技能 · 水域 | 让 AI 成为你的温暖伙伴</p>
   </footer>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('🎉 感谢你的贡献！技能审核通过后将自动上架，并发放算力奖励！');
+    });
+  </script>
 </body>
 </html>
