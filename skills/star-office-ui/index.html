@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star 的像素办公室</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+        }
+        #game-container {
+            border: 4px solid #e94560;
+            image-rendering: pixelated;
+        }
+        #status-text {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #eee;
+            font-size: 14px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 4px;
+            max-width: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="status-text">加载中...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'game-container',
+            pixelArt: true,
+            physics: { default: 'arcade', arcade: { gravity: { y: 0 }, debug: false } },
+            scene: { preload: preload, create: create, update: update }
+        };
+
+        const STATES = {
+            idle: { name: '待命', area: 'breakroom' },
+            writing: { name: '整理文档', area: 'workdesk' },
+            researching: { name: '搜索信息', area: 'workdesk' },
+            executing: { name: '执行任务', area: 'workdesk' },
+            syncing: { name: '同步备份', area: 'breakroom' },
+            error: { name: '出错了', area: 'breakroom' }
+        };
+
+        const BUBBLE_TEXTS = {
+            idle: ['摸鱼中…', '有没有新任务？', '咖啡真好喝', '伸个懒腰'],
+            writing: ['这个要记下来', '写得手酸', '再检查一遍', '好记性不如烂笔头'],
+            researching: ['让我搜一下', '找到线索了', '这个有意思', '再深挖一点'],
+            executing: ['冲鸭！', '这个简单', '加油加油', '马上搞定'],
+            syncing: ['备份备份', '安全第一', '同步中…', '云端见'],
+            error: ['啊哦…', '出问题了', '让我看看', '马上修好']
+        };
+
+        let game, star, areas = {}, currentState = 'idle', statusText, lastFetch = 0, lastBlink = 0, lastBubble = 0, targetX = 660, targetY = 170, bubble = null, typewriterText = '', typewriterTarget = '', typewriterIndex = 0, lastTypewriter = 0;
+        const FETCH_INTERVAL = 2000;
+        const BLINK_INTERVAL = 2500;
+        const BUBBLE_INTERVAL = 8000;
+        const TYPEWRITER_DELAY = 50;
+
+        function preload() {
+            this.load.image('office_bg', '/static/office_bg.png');
+        }
+
+        function create() {
+            game = this;
+            this.add.image(400, 300, 'office_bg');
+            areas = {
+                workdesk: { x: 260, y: 340 },
+                breakroom: { x: 660, y: 170 },
+                alert: { x: 620, y: 490 }
+            };
+
+            // 创建 Star 角色（睁眼 + 闭眼两个纹理）
+            const graphicsOpen = game.make.graphics();
+            graphicsOpen.fillStyle(0xff6b35, 1);
+            graphicsOpen.fillRect(10, 10, 12, 12);
+            graphicsOpen.fillStyle(0xffffff, 1);
+            graphicsOpen.fillRect(13, 13, 3, 3);
+            graphicsOpen.fillRect(16, 13, 3, 3);
+            graphicsOpen.fillStyle(0x000000, 1);
+            graphicsOpen.fillRect(14, 14, 1, 1);
+            graphicsOpen.fillRect(17, 14, 1, 1);
+            graphicsOpen.generateTexture('star_open', 24, 24);
+
+            const graphicsClosed = game.make.graphics();
+            graphicsClosed.fillStyle(0xff6b35, 1);
+            graphicsClosed.fillRect(10, 10, 12, 12);
+            graphicsClosed.fillStyle(0x000000, 1);
+            graphicsClosed.fillRect(13, 14, 3, 1);
+            graphicsClosed.fillRect(16, 14, 3, 1);
+            graphicsClosed.generateTexture('star_closed', 24, 24);
+
+            star = game.physics.add.sprite(660, 170, 'star_open');
+            star.setOrigin(0.5);
+            star.setScale(1.8);
+            star.setAlpha(0.95);
+
+            // 加像素风小牌匾：海辛小龙虾的办公室
+            const plaqueBg = game.add.rectangle(400, 570, 380, 40, 0x5d4037);
+            plaqueBg.setStrokeStyle(3, 0x3e2723);
+            const plaqueText = game.add.text(400, 570, '海辛小龙虾的办公室', {
+                font: '18px monospace',
+                fill: '#ffd700',
+                fontWeight: 'bold',
+                stroke: '#000',
+                strokeThickness: 2
+            }).setOrigin(0.5);
+            // 牌匾两边加个小装饰
+            game.add.text(230, 570, '⭐', { font: '20px' }).setOrigin(0.5);
+            game.add.text(570, 570, '⭐', { font: '20px' }).setOrigin(0.5);
+
+            statusText = document.getElementById('status-text');
+            fetchStatus();
+        }
+
+        function update(time) {
+            if (time - lastFetch > FETCH_INTERVAL) { fetchStatus(); lastFetch = time; }
+
+            // 眨眼
+            if (time - lastBlink > BLINK_INTERVAL) {
+                star.setTexture('star_closed');
+                lastBlink = time;
+                setTimeout(() => { star.setTexture('star_open'); }, 150);
+            }
+
+            // 冒气泡
+            if (time - lastBubble > BUBBLE_INTERVAL) {
+                showBubble();
+                lastBubble = time;
+            }
+
+            // 打字机效果
+            if (typewriterIndex < typewriterTarget.length && time - lastTypewriter > TYPEWRITER_DELAY) {
+                typewriterText += typewriterTarget[typewriterIndex];
+                statusText.textContent = typewriterText;
+                typewriterIndex++;
+                lastTypewriter = time;
+            }
+
+            // 移动 + 小踱步
+            moveStar(time);
+        }
+
+        function normalizeState(s) {
+            if (!s) return 'idle';
+            if (s === 'working') return 'writing';
+            if (s === 'run' || s === 'running') return 'executing';
+            if (s === 'sync') return 'syncing';
+            if (s === 'research') return 'researching';
+            return s;
+        }
+
+        function fetchStatus() {
+            fetch('/status')
+                .then(response => response.json())
+                .then(data => {
+                    const nextState = normalizeState(data.state);
+                    const stateInfo = STATES[nextState] || STATES.idle;
+                    const changed = nextState !== currentState;
+                    currentState = nextState;
+                    const nextLine = '[' + stateInfo.name + '] ' + (data.detail || '...');
+                    if (changed) {
+                        typewriterTarget = nextLine;
+                        typewriterText = '';
+                        typewriterIndex = 0;
+                        const targetArea = areas[stateInfo.area] || areas.breakroom;
+                        targetX = targetArea.x + (Math.random() - 0.5) * 40;
+                        targetY = targetArea.y + (Math.random() - 0.5) * 40;
+                    } else {
+                        if (!typewriterTarget || typewriterTarget !== nextLine) {
+                            typewriterTarget = nextLine;
+                            typewriterText = '';
+                            typewriterIndex = 0;
+                        }
+                    }
+                })
+                .catch(error => {
+                    typewriterTarget = '连接失败，正在重试...';
+                    typewriterText = '';
+                    typewriterIndex = 0;
+                });
+        }
+
+        function moveStar(time) {
+            const stateInfo = STATES[currentState] || STATES.idle;
+            const baseTarget = areas[stateInfo.area] || areas.breakroom;
+            if (Math.random() < 0.005) {
+                targetX = baseTarget.x + (Math.random() - 0.5) * 40;
+                targetY = baseTarget.y + (Math.random() - 0.5) * 40;
+            }
+            const dx = targetX - star.x;
+            const dy = targetY - star.y;
+            const speed = 1.2;
+            const wobble = Math.sin(time / 200) * 0.8;
+            if (Math.abs(dx) > 3) star.x += Math.sign(dx) * speed;
+            if (Math.abs(dy) > 3) star.y += Math.sign(dy) * speed;
+            if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+                star.setY(star.y + wobble);
+            }
+        }
+
+        function showBubble() {
+            if (bubble) { bubble.destroy(); bubble = null; }
+            const texts = BUBBLE_TEXTS[currentState] || BUBBLE_TEXTS.idle;
+            const text = texts[Math.floor(Math.random() * texts.length)];
+            const bg = game.add.rectangle(star.x, star.y - 45, text.length * 10 + 20, 28, 0xffffff, 0.95);
+            bg.setStrokeStyle(2, 0x000000);
+            const txt = game.add.text(star.x, star.y - 45, text, { font: '12px monospace', fill: '#000', align: 'center' }).setOrigin(0.5);
+            bubble = game.add.container(0, 0, [bg, txt]);
+            bubble.setDepth(100);
+            setTimeout(() => { if (bubble) { bubble.destroy(); bubble = null; } }, 3000);
+        }
+
+        new Phaser.Game(config);
+    </script>
+</body>
+</html>
+
