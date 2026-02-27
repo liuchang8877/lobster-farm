@@ -118,23 +118,47 @@
     async function load() {
       console.log('loading data...');
       var s = ['pending', 'approved', 'rejected'];
+      var tables = [
+        { name: 'breeds', kind: '品种' },
+        { name: 'skills', kind: '技能' },
+        { name: 'scenes', kind: '场景' }
+      ];
       try {
-        var counts = await Promise.all(s.map(function(st) {
-          return supabase.from('skills').select('*', { count: 'exact', head: true }).eq('status', st);
+        var countResults = await Promise.all(s.map(function(st) {
+          return Promise.all(tables.map(function(t) {
+            return supabase.from(t.name).select('*', { count: 'exact', head: true }).eq('status', st);
+          }));
         }));
-        console.log('counts:', counts.map(function(c) { return c.count; }));
+        var counts = countResults.map(function(group) {
+          return group.reduce(function(sum, r) { return sum + (r.count || 0); }, 0);
+        });
+        console.log('counts:', counts);
         
         for (var i = 0; i < 3; i++) {
-          document.getElementById('p' + i).innerText = counts[i].count || 0;
+          document.getElementById('p' + i).innerText = counts[i] || 0;
         }
         
         var data = await Promise.all(s.map(function(st) {
-          return supabase.from('skills').select('*').eq('status', st).order('created_at', { ascending: false }).limit(20);
+          return Promise.all(tables.map(function(t) {
+            return supabase.from(t.name).select('*').eq('status', st).order('created_at', { ascending: false }).limit(20);
+          }));
         }));
         console.log('data loaded:', data.length);
         
         for (var i = 0; i < 3; i++) {
-          var list = data[i].data || [];
+          var merged = [];
+          for (var k = 0; k < tables.length; k++) {
+            var rows = (data[i][k].data || []).map(function(item) {
+              item._table = tables[k].name;
+              item._kind = tables[k].kind;
+              return item;
+            });
+            merged = merged.concat(rows);
+          }
+          merged.sort(function(a, b) {
+            return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+          });
+          var list = merged.slice(0, 20);
           var html = '';
           if (list.length === 0) {
             html = '<p style="text-align:center;color:#888;padding:40px;">暂无内容</p>';
@@ -142,9 +166,11 @@
             for (var j = 0; j < list.length; j++) {
               var item = list[j];
               var btns = item.status === 'pending' ? 
-                '<button class="btn btn-a" onclick="action(\'' + item.id + '\',\'approved\')">✅ 通过</button>' +
-                '<button class="btn btn-r" onclick="action(\'' + item.id + '\',\'rejected\')">❌ 拒绝</button>' : '';
-              html += '<div class="card"><h3>' + item.name + '</h3><p>' + (item.description || '暂无描述') + '</p>' + btns + '</div>';
+                '<button class="btn btn-a" onclick="action(\'' + item.id + '\',\'approved\',\'' + item._table + '\')">✅ 通过</button>' +
+                '<button class="btn btn-r" onclick="action(\'' + item.id + '\',\'rejected\',\'' + item._table + '\')">❌ 拒绝</button>' : '';
+              var metaLine = item.meta ? ('<p>特点：' + item.meta + '</p>') : '';
+              var badgeLine = item.badge ? ('<p>标签：' + item.badge + '</p>') : '';
+              html += '<div class="card"><h3>' + item.name + '</h3><p>类型：' + item._kind + '</p><p>' + (item.description || '暂无描述') + '</p>' + metaLine + badgeLine + btns + '</div>';
             }
           }
           document.getElementById('list' + i).innerHTML = html;
@@ -155,14 +181,18 @@
       }
     }
     
-    async function action(id, status) {
+    async function action(id, status, table) {
       if (status === 'rejected') {
         var reason = prompt('请输入拒绝原因：');
         if (!reason) return;
-        await supabase.from('skills').update({ status: 'rejected', status_message: reason }).eq('id', id);
+        if (table === 'skills') {
+          await supabase.from(table).update({ status: 'rejected', status_message: reason }).eq('id', id);
+        } else {
+          await supabase.from(table).update({ status: 'rejected' }).eq('id', id);
+        }
       } else {
         if (!confirm('确认通过？')) return;
-        await supabase.from('skills').update({ status: 'approved' }).eq('id', id);
+        await supabase.from(table).update({ status: 'approved' }).eq('id', id);
       }
       alert(status === 'approved' ? '✅ 已通过' : '❌ 已拒绝');
       load();
