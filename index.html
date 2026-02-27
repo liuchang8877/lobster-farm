@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>龙虾养殖基地 · OpenClaw 角色与技能市场</title>
+  <title>🦞 温暖虾塘 · OpenClaw 技能小站</title>
   <style>
     :root {
-      --coral: #ff6f61;
-      --shell: #ffb199;
-      --sea: #2b6d6a;
-      --foam: #f6f2ec;
-      --ink: #2a2a2a;
-      --sand: #f3e0c8;
-      --reef: #ff8a5b;
-      --shadow: rgba(0, 0, 0, 0.1);
+      --warm-bg: #FFF8F0;
+      --warm-cream: #FFEEE4;
+      --warm-orange: #FF9B6A;
+      --warm-coral: #FF7B6B;
+      --warm-brown: #8B6B4F;
+      --warm-text: #5D4E42;
+      --warm-muted: #A89080;
+      --shadow: rgba(139, 107, 79, 0.12);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
-      color: var(--ink);
-      background: linear-gradient(180deg, #fff8f5 0%, #fef6f0 100%);
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--warm-text);
+      background: var(--warm-bg);
     }
+    
+    /* 温馨头部 */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(135deg, #fff 0%, var(--warm-cream) 100%);
+      padding: 20px 0;
       box-shadow: 0 2px 20px var(--shadow);
     }
     .nav {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -41,242 +40,202 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 22px;
-      color: var(--sea);
+      gap: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--warm-coral);
     }
-    .brand span { font-size: 32px; }
+    .brand-icon { font-size: 36px; }
     nav a {
       text-decoration: none;
-      color: var(--ink);
+      color: var(--warm-text);
       margin-left: 28px;
       font-weight: 500;
-      transition: color 0.2s;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.2s;
     }
-    nav a:hover { color: var(--coral); }
+    nav a:hover {
+      background: var(--warm-cream);
+      color: var(--warm-coral);
+    }
     
+    /* 温馨欢迎区 */
     .hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 24px;
       text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, var(--warm-cream) 0%, var(--warm-bg) 100%);
     }
     .hero h1 {
-      font-size: 48px;
+      font-size: 42px;
       margin: 0 0 16px;
-      background: linear-gradient(135deg, var(--sea), var(--coral));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--warm-brown);
     }
+    .hero h1 span { color: var(--warm-coral); }
     .hero p {
       font-size: 18px;
-      color: #666;
+      color: var(--warm-muted);
       max-width: 600px;
       margin: 0 auto 32px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
-    .hero .btn {
-      display: inline-block;
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
       padding: 14px 32px;
       border-radius: 30px;
-      text-decoration: none;
       font-weight: 600;
-      margin: 0 8px;
+      text-decoration: none;
       transition: transform 0.2s;
     }
-    .hero .btn:hover { transform: translateY(-2px); }
-    .hero .btn-primary { background: var(--sea); color: #fff; }
-    .hero .btn-secondary { background: var(--coral); color: #fff; }
-
-    .section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--warm-coral), var(--warm-orange));
+      color: #fff;
     }
-    .section-header {
-      margin-bottom: 32px;
+    .btn-secondary {
+      background: #fff;
+      color: var(--warm-coral);
+      border: 2px solid var(--warm-coral);
+    }
+    
+    /* 统计数据 */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 40px 20px;
+      background: #fff;
+      margin-top: -20px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--warm-coral);
+    }
+    .stat-label {
+      font-size: 14px;
+      color: var(--warm-muted);
+    }
+    
+    /* 内容区块 */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
     }
     .section-title {
+      text-align: center;
       font-size: 28px;
-      font-weight: 700;
-      color: var(--sea);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
+      color: var(--warm-brown);
+      margin-bottom: 40px;
     }
     .section-title span { font-size: 32px; }
-    .section-desc {
-      color: #666;
-      font-size: 15px;
-    }
-
+    
+    /* 温馨卡片 */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 24px;
     }
-
     .card {
       background: #fff;
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 28px;
-      box-shadow: 0 8px 32px var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 8px 30px var(--shadow);
+      transition: all 0.3s;
+      border: 2px solid transparent;
     }
     .card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 48px var(--shadow);
+      border-color: var(--warm-orange);
     }
     .card-icon {
-      width: 64px;
-      height: 64px;
+      width: 60px;
+      height: 60px;
       border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 28px;
       margin-bottom: 16px;
     }
     .card h3 {
-      margin: 0 0 8px;
-      font-size: 20px;
-      color: var(--ink);
-    }
-    .card .type {
-      font-size: 12px;
-      color: var(--coral);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: var(--warm-brown);
     }
     .card p {
-      color: #666;
+      color: var(--warm-muted);
       font-size: 14px;
       line-height: 1.6;
       margin: 0 0 16px;
     }
-    .card .tags {
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
     .tag {
-      padding: 4px 12px;
-      background: var(--foam);
+      padding: 4px 14px;
+      background: var(--warm-cream);
+      color: var(--warm-coral);
       border-radius: 20px;
       font-size: 12px;
-      color: var(--sea);
     }
-
-    /* 场景样式 */
+    
+    /* 场景卡片 - 更温馨 */
     .scene-card {
-      background: linear-gradient(135deg, var(--sea), #164d4b);
+      background: linear-gradient(145deg, #FFEEE4 0%, #FFF5ED 100%);
       border-radius: 24px;
-      padding: 32px;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    .scene-card::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+      padding: 28px;
+      border-left: 4px solid var(--warm-coral);
     }
     .scene-card h3 {
-      color: #fff;
-      font-size: 22px;
-      margin: 0 0 12px;
+      color: var(--warm-brown);
+      margin: 0 0 10px;
     }
     .scene-card p {
-      color: rgba(255,255,255,0.8);
-      margin: 0 0 20px;
-      line-height: 1.6;
+      color: var(--warm-muted);
+      margin: 0;
     }
-    .scene-card .tags .tag {
-      background: rgba(255,255,255,0.2);
-      color: #fff;
-    }
-
+    
     /* 创作者区域 */
-    .creator-section {
+    .creator-area {
       background: #fff;
       border-radius: 24px;
       padding: 40px;
-      box-shadow: 0 8px 32px var(--shadow);
-      margin-bottom: 40px;
+      box-shadow: 0 8px 30px var(--shadow);
     }
-    .creator-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-top: 32px;
-    }
-    .creator-card {
-      background: linear-gradient(135deg, var(--foam), #fff);
-      border-radius: 16px;
-      padding: 24px;
-      border: 2px solid var(--sand);
-    }
-    .creator-card h4 {
-      margin: 0 0 12px;
-      color: var(--sea);
-      font-size: 18px;
-    }
-    .creator-card p {
-      color: #666;
-      font-size: 14px;
-      margin: 0;
-    }
-    .creator-card .icon {
-      font-size: 40px;
-      margin-bottom: 16px;
-    }
-
-    /* 算力值 */
-    .power-stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      margin: 32px 0;
-    }
-    .power-stat {
+    .creator-area h3 {
       text-align: center;
+      color: var(--warm-brown);
+      margin: 0 0 30px;
     }
-    .power-stat .value {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--sea);
-    }
-    .power-stat .label {
-      font-size: 14px;
-      color: #888;
-    }
-
+    
     /* 排行榜 */
     .leaderboard {
-      background: #fff;
+      background: var(--warm-cream);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 32px var(--shadow);
     }
-    .leaderboard-item {
+    .leader-item {
       display: flex;
       align-items: center;
       padding: 16px 24px;
-      border-bottom: 1px solid var(--foam);
+      border-bottom: 1px solid rgba(255,155,106,0.2);
     }
-    .leaderboard-item:last-child { border-bottom: none; }
-    .leaderboard-item .rank {
-      width: 40px;
-      height: 40px;
+    .leader-item:last-child { border: none; }
+    .rank {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -284,78 +243,109 @@
       font-weight: 700;
       margin-right: 16px;
     }
-    .leaderboard-item .rank.gold { background: linear-gradient(135deg, #ffd700, #ffb700); color: #fff; }
-    .leaderboard-item .rank.silver { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #fff; }
-    .leaderboard-item .rank.bronze { background: linear-gradient(135deg, #cd7f32, #b87333); color: #fff; }
-    .leaderboard-item .rank.normal { background: var(--foam); color: var(--sea); }
-    .leaderboard-item .info { flex: 1; }
-    .leaderboard-item .name { font-weight: 600; }
-    .leaderboard-item .skill-count { font-size: 12px; color: #888; }
-    .leaderboard-item .power { font-weight: 700; color: var(--sea); }
-
+    .rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); color: #fff; }
+    .rank-2 { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #fff; }
+    .rank-3 { background: linear-gradient(135deg, #CD7F32, #B87333); color: #fff; }
+    .rank-n { background: #fff; color: var(--warm-coral); }
+    .leader-info { flex: 1; }
+    .leader-name { font-weight: 600; color: var(--warm-brown); }
+    .leader-skills { font-size: 12px; color: var(--warm-muted); }
+    .leader-power { color: var(--warm-coral); font-weight: 700; }
+    
     /* 上传表单 */
-    .upload-form {
+    .upload-box {
       background: #fff;
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 32px;
-      box-shadow: 0 8px 32px var(--shadow);
+      box-shadow: 0 8px 30px var(--shadow);
     }
     .form-group { margin-bottom: 20px; }
     .form-group label {
       display: block;
       font-weight: 600;
+      color: var(--warm-brown);
       margin-bottom: 8px;
-      color: var(--ink);
     }
     .form-group input, .form-group textarea, .form-group select {
       width: 100%;
-      padding: 12px 16px;
-      border: 2px solid var(--foam);
-      border-radius: 12px;
+      padding: 14px 18px;
+      border: 2px solid var(--warm-cream);
+      border-radius: 14px;
       font-size: 14px;
       transition: border-color 0.2s;
+      background: var(--warm-bg);
     }
     .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
       outline: none;
-      border-color: var(--sea);
+      border-color: var(--warm-coral);
     }
-    .form-group textarea { min-height: 100px; resize: vertical; }
-    .form-btn {
-      background: var(--sea);
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--warm-coral), var(--warm-orange));
       color: #fff;
       border: none;
-      padding: 14px 32px;
       border-radius: 30px;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.2s;
     }
-    .form-btn:hover { transform: translateY(-2px); }
-
-    footer {
-      background: var(--sea);
-      color: #fff;
-      text-align: center;
-      padding: 48px 24px;
+    .submit-btn:hover { transform: translateY(-2px); }
+    
+    /* 激励卡片 */
+    .reward-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
     }
-    footer p { opacity: 0.8; margin: 0; }
-
+    .reward-card {
+      background: linear-gradient(135deg, #fff 0%, var(--warm-cream) 100%);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+    }
+    .reward-icon { font-size: 40px; margin-bottom: 12px; }
+    .reward-card h4 { color: var(--warm-brown); margin: 0 0 8px; }
+    .reward-card p { color: var(--warm-muted); font-size: 13px; margin: 0; }
+    
+    /* 关于我们 */
+    .about {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--warm-cream);
+    }
+    .about h2 { color: var(--warm-brown); margin: 0 0 16px; }
+    .about p { color: var(--warm-muted); line-height: 1.8; max-width: 600px; margin: 0 auto; }
+    
+    /* 底部 */
+    footer {
+      background: var(--warm-brown);
+      color: var(--warm-cream);
+      text-align: center;
+      padding: 30px 20px;
+    }
+    footer p { margin: 0; opacity: 0.8; }
+    
     @media (max-width: 768px) {
-      .hero h1 { font-size: 32px; }
       .nav { flex-direction: column; gap: 16px; }
-      nav a { margin: 0 12px; }
+      nav a { margin: 0 8px; }
+      .hero h1 { font-size: 28px; }
+      .stats { gap: 30px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <div class="brand"><span>🦞</span>龙虾养殖基地</div>
+      <div class="brand">
+        <span class="brand-icon">🦞</span>
+        温暖虾塘
+      </div>
       <nav>
-        <a href="#varieties">品种</a>
         <a href="#skills">技能</a>
-        <a href="#waters">水域</a>
+        <a href="#scenes">场景</a>
         <a href="#creator">创作者</a>
         <a href="#about">关于</a>
       </nav>
@@ -363,155 +353,85 @@
   </header>
 
   <main>
+    <!-- 欢迎区 -->
     <section class="hero">
-      <h1>🦞 你的 AI 养殖专家</h1>
-      <p>像挑选优质龙虾品种一样，选择最适合你的 AI 角色。<br>像学习龙虾技能一样，掌握 OpenClaw 的各种能力。<br>像选择水域一样，找到最适合你的使用场景。</p>
-      <div>
-        <a href="#varieties" class="btn btn-primary">🦞 浏览技能</a>
-        <a href="#creator" class="btn btn-secondary">🚀 成为创作者</a>
-      </div>
-      <div class="power-stats">
-        <div class="power-stat">
-          <div class="value">50+</div>
-          <div class="label">龙虾品种</div>
-        </div>
-        <div class="power-stat">
-          <div class="value">100+</div>
-          <div class="label">实用技能</div>
-        </div>
-        <div class="power-stat">
-          <div class="value">1000+</div>
-          <div class="label">活跃用户</div>
-        </div>
+      <h1>欢迎来到<span>温暖虾塘</span></h1>
+      <p>在这里，你可以找到各种实用的 OpenClaw 技能和角色配置，<br>也可以分享自己的作品，获得算力奖励。</p>
+      <div class="hero-btns">
+        <a href="#skills" class="btn btn-primary">🧩 浏览技能</a>
+        <a href="#creator" class="btn btn-secondary">🚀 加入创作</a>
       </div>
     </section>
-
-    <!-- 龙虾品种 -->
-    <section id="varieties" class="section">
-      <div class="section-header">
-        <div class="section-title"><span>🦞</span>龙虾品种 · 角色</div>
-        <div class="section-desc">不同品种的龙虾有不同的性格和能力，选择适合你的 AI 角色</div>
+    
+    <!-- 统计数据 -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">精选技能</div>
       </div>
-      <div class="grid" id="skills-grid">
-        <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">🎖️</div>
-          <div class="type">CEO 品种</div>
-          <h3>司令龙虾</h3>
-          <p>全局管理者，统筹团队、制定策略、决策执行。</p>
-          <div class="tags">
-            <span class="tag">团队管理</span>
-            <span class="tag">战略规划</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">👨‍🍳</div>
-          <div class="type">内容品种</div>
-          <h3>厨师龙虾</h3>
-          <p>内容创作高手，写文案，做教程、生成方案。</p>
-          <div class="tags">
-            <span class="tag">文案写作</span>
-            <span class="tag">教程制作</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">🔧</div>
-          <div class="type">工程品种</div>
-          <h3>钳工龙虾</h3>
-          <p>编程专家，写代码、调Bug、搭架构。</p>
-          <div class="tags">
-            <span class="tag">代码生成</span>
-            <span class="tag">调试</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🔍</div>
-          <div class="type">调研品种</div>
-          <h3>侦察龙虾</h3>
-          <p>信息搜集专家，全网搜索、竞品分析。</p>
-          <div class="tags">
-            <span class="tag">搜索</span>
-            <span class="tag">分析</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧹</div>
-          <div class="type">运营品种</div>
-          <h3>管家龙虾</h3>
-          <p>运营全能手，日程管理、数据整理、自动化。</p>
-          <div class="tags">
-            <span class="tag">日程</span>
-            <span class="tag">自动化</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">📚</div>
-          <div class="type">学习品种</div>
-          <h3>学者龙虾</h3>
-          <p>知识导师，解释概念、制定计划、答疑解惑。</p>
-          <div class="tags">
-            <span class="tag">教学</span>
-            <span class="tag">答疑</span>
-          </div>
-        </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">创作者</div>
       </div>
-    </section>
+      <div class="stat">
+        <div class="stat-num">1000+</div>
+        <div class="stat-label">温暖的用户</div>
+      </div>
+    </div>
 
-    <!-- 龙虾技能 -->
+    <!-- 技能列表 -->
     <section id="skills" class="section">
-      <div class="section-header">
-        <div class="section-title"><span>⚡</span>龙虾技能 · SKILL</div>
-        <div class="section-desc">让龙虾掌握各种技能，就像给渔船装配不同的工具</div>
-      </div>
-      <div class="grid" id="skills-grid">
+      <h2 class="section-title"><span>🧩</span>精选技能</h2>
+      <div class="grid">
         <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💻</div>
-          <h3>编程技能</h3>
-          <p>代码生成、调试、优化。多种语言支持。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #FFE5D9, #FFCDB2);">💻</div>
+          <h3>编程技能包</h3>
+          <p>代码生成、调试、优化，多语言支持</p>
           <div class="tags">
             <span class="tag">Python</span>
             <span class="tag">JavaScript</span>
           </div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">🔎</div>
-          <h3>搜索技能</h3>
-          <p>全网语义搜索、精准定位。Exa 加持。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9);">🔍</div>
+          <h3>搜索技能包</h3>
+          <p>全网搜索，信息整理，精准定位</p>
           <div class="tags">
             <span class="tag">搜索</span>
             <span class="tag">调研</span>
           </div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">✍️</div>
-          <h3>写作技能</h3>
-          <p>专业文案、文档、报告。风格定制。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #FFF3E0, #FFE0B2);">✍️</div>
+          <h3>写作技能包</h3>
+          <p>专业文案、文档、报告定制</p>
           <div class="tags">
             <span class="tag">文案</span>
             <span class="tag">文档</span>
           </div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">🌐</div>
+          <div class="card-icon" style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB);">🌐</div>
           <h3>浏览器技能</h3>
-          <p>网页自动化、填表、截图、数据抓取。</p>
+          <p>网页自动化、填表、截图、数据抓取</p>
           <div class="tags">
             <span class="tag">自动化</span>
             <span class="tag">抓取</span>
           </div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">🧠</div>
-          <h3>记忆技能</h3>
-          <p>长期记忆、知识管理、偏好学习。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #F3E5F5, #E1BEE7);">🧠</div>
+          <h3>记忆技能包</h3>
+          <p>长期记忆、知识管理、偏好学习</p>
           <div class="tags">
             <span class="tag">记忆</span>
             <span class="tag">知识库</span>
           </div>
         </div>
         <div class="card">
-          <div class="card-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">🎨</div>
-          <h3>设计技能</h3>
-          <p>PPT 制作、海报设计、图片生成。</p>
+          <div class="card-icon" style="background: linear-gradient(135deg, #FCE4EC, #F8BBD9);">🎨</div>
+          <h3>设计技能包</h3>
+          <p>PPT 制作、海报设计、图片生成</p>
           <div class="tags">
             <span class="tag">PPT</span>
             <span class="tag">设计</span>
@@ -520,261 +440,191 @@
       </div>
     </section>
 
-    <!-- 龙虾水域 -->
-    <section id="waters" class="section">
-      <div class="section-header">
-        <div class="section-title"><span>🌊</span>龙虾水域 · 使用场景</div>
-        <div class="section-desc">不同水域适合不同类型的龙虾，找到最适合你的场景</div>
-      </div>
-      <div class="grid" id="skills-grid">
+    <!-- 应用场景 -->
+    <section id="scenes" class="section">
+      <h2 class="section-title"><span>🌊</span>应用场景</h2>
+      <div class="grid">
         <div class="scene-card">
-          <h3>🏢 企业水域</h3>
-          <p>团队协作、项目管理、客服响应。让 AI 成为你的企业助手。</p>
-          <div class="tags">
-            <span class="tag">团队协作</span>
-            <span class="tag">项目管理</span>
-          </div>
+          <h3>🏢 企业工作</h3>
+          <p>团队协作、项目管理、客服响应，AI 成为你的得力助手</p>
         </div>
         <div class="scene-card">
-          <h3>🏠 个人工作室</h3>
-          <p>独立开发、内容创作、个人品牌。一个人顶一个团队。</p>
-          <div class="tags">
-            <span class="tag">独立开发</span>
-            <span class="tag">内容创作</span>
-          </div>
+          <h3>🏠 个人创作</h3>
+          <p>独立开发、内容创作、个人品牌，一个人也能顶一个团队</p>
         </div>
         <div class="scene-card">
-          <h3>🎓 学术研究</h3>
-          <p>文献调研、论文写作、知识探索。加速学术进程。</p>
-          <div class="tags">
-            <span class="tag">文献调研</span>
-            <span class="tag">论文</span>
-          </div>
+          <h3>🎓 学习成长</h3>
+          <p>文献调研、论文写作、知识探索，AI 是最好的学习伙伴</p>
         </div>
         <div class="scene-card">
           <h3>🛒 电商运营</h3>
-          <p>商品描述、客服话术、数据分析。提升转化率。</p>
-          <div class="tags">
-            <span class="tag">商品描述</span>
-            <span class="tag">客服</span>
-          </div>
+          <p>商品描述、客服话术、数据分析，让运营更高效</p>
         </div>
       </div>
     </section>
 
     <!-- 创作者中心 -->
     <section id="creator" class="section">
-      <div class="section-header">
-        <div class="section-title"><span>🚀</span>创作者中心</div>
-        <div class="section-desc">上传你的技能，成为龙虾养殖基地的贡献者</div>
-      </div>
-
-      <!-- 创作者激励 -->
-      <div class="creator-section">
-        <h3 style="margin: 0 0 16px; color: var(--sea);">🎁 创作者激励计划</h3>
-        <div class="creator-grid">
-          <div class="creator-card">
-            <div class="icon">🆓</div>
-            <h4>免费分享</h4>
-            <p>任何人都可以免费使用所有技能，降低使用门槛</p>
-          </div>
-          <div class="creator-card">
-            <div class="icon">⚡</div>
-            <h4>算力奖励</h4>
-            <p>上传技能可获得算力值，用于你自己的 OpenClaw</p>
-          </div>
-          <div class="creator-card">
-            <div class="icon">🏆</div>
-            <h4>排行榜</h4>
-            <p>热门创作者上榜展示，获得荣誉和曝光</p>
-          </div>
-          <div class="creator-card">
-            <div class="icon">🔄</div>
-            <h4>版本更新</h4>
-            <p>随时更新你的技能，下载者自动获得最新版本</p>
-          </div>
+      <h2 class="section-title"><span>🚀</span>创作者中心</h2>
+      
+      <!-- 激励计划 -->
+      <div class="reward-cards">
+        <div class="reward-card">
+          <div class="reward-icon">🆓</div>
+          <h4>免费分享</h4>
+          <p>所有人免费使用，降低门槛</p>
+        </div>
+        <div class="reward-card">
+          <div class="reward-icon">⚡</div>
+          <h4>算力奖励</h4>
+          <p>上传技能获得算力值</p>
+        </div>
+        <div class="reward-card">
+          <div class="reward-icon">🏆</div>
+          <h4>排行榜</h4>
+          <p>热门创作者上榜展示</p>
         </div>
       </div>
-
+      
       <!-- 排行榜 -->
-      <div class="section-header" style="margin-top: 40px;">
-        <div class="section-title"><span>🏆</span>创作者排行榜</div>
+      <div class="creator-area">
+        <h3>🏆 创作者排行榜</h3>
+        <div class="leaderboard">
+          <div class="leader-item">
+            <div class="rank rank-1">1</div>
+            <div class="leader-info">
+              <div class="leader-name">张三的养殖场</div>
+              <div class="leader-skills">贡献 12 个技能</div>
+            </div>
+            <div class="leader-power">+1200 算力</div>
+          </div>
+          <div class="leader-item">
+            <div class="rank rank-2">2</div>
+            <div class="leader-info">
+              <div class="leader-name">李四的池塘</div>
+              <div class="leader-skills">贡献 8 个技能</div>
+            </div>
+            <div class="leader-power">+800 算力</div>
+          </div>
+          <div class="leader-item">
+            <div class="rank rank-3">3</div>
+            <div class="leader-info">
+              <div class="leader-name">王五的渔场</div>
+              <div class="leader-skills">贡献 5 个技能</div>
+            </div>
+            <div class="leader-power">+500 算力</div>
+          </div>
+          <div class="leader-item">
+            <div class="rank rank-n">4</div>
+            <div class="leader-info">
+              <div class="leader-name">赵六的虾塘</div>
+              <div class="leader-skills">贡献 3 个技能</div>
+            </div>
+            <div class="leader-power">+300 算力</div>
+          </div>
+        </div>
       </div>
-      <div class="leaderboard" id="leaderboard-list">
-        <div class="leaderboard-item">
-          <div class="rank gold">1</div>
-          <div class="info">
-            <div class="name">🦞 张三的养殖场</div>
-            <div class="skill-count">贡献 12 个技能</div>
-          </div>
-          <div class="power">+1200 算力</div>
+      
+      <!-- 上传 -->
+      <div style="margin-top: 40px;">
+        <h3 style="text-align:center;color:var(--warm-brown);margin-bottom:24px;">📤 上传你的技能</h3>
+        <div class="upload-box">
+          <form id="uploadForm">
+            <div class="form-group">
+              <label>技能名称</label>
+              <input type="text" id="skillName" placeholder="例如：高级编程技能包" required>
+            </div>
+            <div class="form-group">
+              <label>技能类型</label>
+              <select id="skillType">
+                <option>编程</option>
+                <option>搜索</option>
+                <option>写作</option>
+                <option>浏览器</option>
+                <option>记忆</option>
+                <option>设计</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>技能描述</label>
+              <textarea id="skillDesc" placeholder="详细描述这个技能的功能和使用方法..." rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label>标签（用逗号分隔）</label>
+              <input type="text" id="skillTags" placeholder="Python, JavaScript, 代码生成">
+            </div>
+            <button type="submit" class="submit-btn">🚀 提交审核</button>
+          </form>
         </div>
-        <div class="leaderboard-item">
-          <div class="rank silver">2</div>
-          <div class="info">
-            <div class="name">🦞 李四的池塘</div>
-            <div class="skill-count">贡献 8 个技能</div>
-          </div>
-          <div class="power">+800 算力</div>
-        </div>
-        <div class="leaderboard-item">
-          <div class="rank bronze">3</div>
-          <div class="info">
-            <div class="name">🦞 王五的渔场</div>
-            <div class="skill-count">贡献 5 个技能</div>
-          </div>
-          <div class="power">+500 算力</div>
-        </div>
-        <div class="leaderboard-item">
-          <div class="rank normal">4</div>
-          <div class="info">
-            <div class="name">🦞 赵六的虾塘</div>
-            <div class="skill-count">贡献 3 个技能</div>
-          </div>
-          <div class="power">+300 算力</div>
-        </div>
-      </div>
-
-      <!-- 上传表单 -->
-      <div class="section-header" style="margin-top: 40px;">
-        <div class="section-title"><span>📤</span>上传技能</div>
-      </div>
-      <div class="upload-form">
-        <form id="uploadForm">
-          <div class="form-group">
-            <label>技能名称</label>
-            <input type="text" id="skillName" placeholder="例如：高级编程技能包" required>
-          </div>
-          <div class="form-group">
-            <label>技能类型</label>
-            <select id="skillType">
-              <option>编程技能</option>
-              <option>搜索技能</option>
-              <option>写作技能</option>
-              <option>浏览器技能</option>
-              <option>记忆技能</option>
-              <option>设计技能</option>
-              <option>其他</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>技能描述</label>
-            <textarea id="skillDesc" placeholder="详细描述这个技能的功能和使用方法..." required></textarea>
-          </div>
-          <div class="form-group">
-            <label>技能文件 (SKILL.md)</label>
-            <input type="file" accept=".md,.txt">
-          </div>
-          <button type="submit" class="form-btn">🚀 上传技能</button>
-        </form>
       </div>
     </section>
 
     <!-- 关于 -->
-    <section id="about" class="section" style="text-align: center; max-width: 800px;">
-      <h2 style="color: var(--sea); margin-bottom: 16px;">🦞 关于龙虾养殖基地</h2>
-      <p style="color: #666; line-height: 1.8;">
-        我们是一个热爱自动化和 AI 的团队，把 OpenClaw 视为"龙虾"精心培养。<br>
-        <b>龙虾品种 = AI 角色</b>，让 AI 有性格<br>
-        <b>龙虾技能 = SKILL</b>，让 AI 有能力<br>
-        <b>龙虾水域 = 使用场景</b>，让 AI 有用武之地<br><br>
-        用心照顾每一只"龙虾"的成长，让 AI 成为你的温暖伙伴。
-      </p>
+    <section id="about" class="about">
+      <h2>🦞 关于温暖虾塘</h2>
+      <p>我们是一个热爱 AI 和自动化的团队，<br>致力于让每个人都能轻松使用 OpenClaw。<br><br>
+      在这里，技能免费分享，创作者获得算力奖励，<br>一起打造温暖的 AI 社区。</p>
     </section>
   </main>
 
   <footer>
-    <p>🦞 龙虾养殖基地 · OpenClaw 角色与技能市场</p>
-    <p style="margin-top: 8px; opacity: 0.6;">品种 · 技能 · 水域 | 让 AI 成为你的温暖伙伴</p>
+    <p>🦞 温暖虾塘 · OpenClaw 技能小站</p>
+    <p style="margin-top:8px;">让 AI 成为你的温暖伙伴</p>
   </footer>
 
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    // 配置
+    const SUPABASE_URL = 'https://thpamcdbcfnmhvnmvhtc.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRocGFtY2RiY2ZubWh2bm12aHRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNTg5MTIsImV4cCI6MjA4NzczNDkxMn0.7Mgl8AE6au-ICi22U8R7u2MFQqKyd1EP0-a-PsC6c2w';
+    
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    
+    // 上传技能
+    async function uploadSkill(data) {
+      const { error } = await supabase.from('skills').insert([{
+        name: data.name,
+        type: data.type,
+        description: data.description,
+        tags: data.tags,
+        status: 'pending',
+        power_reward: 10
+      }]);
+      return !error;
+    }
+    
+    // 表单提交
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert('🎉 感谢你的贡献！技能审核通过后将自动上架，并发放算力奖励！');
+      const form = e.target;
+      const btn = form.querySelector('.submit-btn');
+      
+      btn.disabled = true;
+      btn.textContent = '提交中...';
+      
+      const tags = document.getElementById('skillTags').value
+        .split(',').map(t => t.trim()).filter(t => t);
+      
+      const success = await uploadSkill({
+        name: document.getElementById('skillName').value,
+        type: document.getElementById('skillType').value,
+        description: document.getElementById('skillDesc').value,
+        tags: tags
+      });
+      
+      btn.disabled = false;
+      btn.textContent = '🚀 提交审核';
+      
+      if (success) {
+        alert('🎉 提交成功！\n\n技能已提交审核，\n通过后将自动上架并发放算力奖励。');
+        form.reset();
+      } else {
+        alert('❌ 提交失败，请稍后重试');
+      }
     });
+    
+    console.log('🦞 温暖虾塘已就绪');
   </script>
 </body>
 </html>
-
-<!-- Supabase SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- 自定义 JS -->
-<script src="js/supabase.js"></script>
-<script src="js/workflow.js"></script>
-
-<!-- 管理员审核面板 -->
-<section id="admin" class="section" style="display:none;">
-  <div class="section-header">
-    <div class="section-title"><span>⚙️</span>技能审核管理</div>
-    <div class="section-desc">管理员专用面板</div>
-  </div>
-  
-  <div id="admin-panel">
-    <p style="text-align:center;color:#888;">加载中...</p>
-  </div>
-  
-  <div style="margin-top:32px;">
-    <h4>开启管理员模式：</h4>
-    <input type="password" id="adminPassword" placeholder="输入管理员密码" style="padding:12px;border-radius:8px;border:2px solid #ddd;">
-    <button onclick="enableAdmin()" style="padding:12px 24px;background:var(--sea);color:#fff;border:none;border-radius:8px;cursor:pointer;">确认</button>
-  </div>
-</section>
-
-<script>
-function enableAdmin() {
-  const pwd = document.getElementById('adminPassword').value;
-  if (pwd === 'lobster2026') {
-    localStorage.setItem('lobster_admin', 'true');
-    document.getElementById('admin').style.display = 'block';
-    renderAdminPanel();
-  } else {
-    alert('密码错误');
-  }
-}
-
-// 检查是否是管理员
-if (localStorage.getItem('lobster_admin') === 'true') {
-  document.getElementById('admin').style.display = 'block';
-}
-</script>
-
-<style>
-.review-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-.review-header h4 { margin: 0; color: var(--sea); }
-.review-desc { color: #666; margin: 12px 0; }
-.review-tags { margin: 12px 0; }
-.review-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-.btn-approve {
-  background: #22c55e;
-  color: #fff;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.btn-reject {
-  background: #ef4444;
-  color: #fff;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-</style>
