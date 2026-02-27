@@ -115,6 +115,115 @@
       box-shadow: var(--shadow);
     }
 
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 250, 242, 0.9);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--cream-200);
+    }
+
+    .top-nav .nav-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--coffee-700);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--coffee-700);
+      background: var(--cream-100);
+      border: 1px solid var(--cream-200);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .feature-card {
+      background: linear-gradient(140deg, #fff 0%, #fff5e8 100%);
+      border: 1px solid var(--cream-200);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 170px;
+    }
+
+    .feature-card .badge {
+      background: var(--cream-300);
+    }
+
+    .scene-card {
+      background: linear-gradient(160deg, #fffaf2 0%, #f7ead6 100%);
+      border: 1px solid var(--cream-200);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 160px;
+    }
+
+    .leaderboard {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #fff;
+      border: 1px solid var(--cream-200);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .leaderboard-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .rank {
+      font-size: 12px;
+      color: var(--caramel-600);
+    }
+
+    .score {
+      font-weight: 700;
+      color: var(--coffee-700);
+    }
+
     form {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -188,9 +297,130 @@
     <p class="subtitle">在温暖的奶油色调里，发现被审核通过的技能包，也可以提交你的技能，等待上架。</p>
   </header>
 
+  <nav class="top-nav">
+    <div class="nav-wrap">
+      <div class="brand">Lobster Lab</div>
+      <div class="nav-links">
+        <a href="#breeds">品种</a>
+        <a href="#skills-section">技能</a>
+        <a href="#scenes">场景</a>
+        <a href="#creators">创作者</a>
+      </div>
+    </div>
+  </nav>
+
   <main class="container">
+    <section id="breeds">
+      <h2>精选品种</h2>
+      <p class="subtitle">挑选与你的团队调性最合拍的龙虾品种，为工作流注入新灵感。</p>
+      <div class="hero-grid">
+        <article class="feature-card">
+          <span class="badge">统筹</span>
+          <h3>司令龙虾</h3>
+          <div class="meta">擅长战略规划与节奏把控</div>
+          <p>适合需要跨团队协作、推进复杂项目的场景。</p>
+        </article>
+        <article class="feature-card">
+          <span class="badge">精研</span>
+          <h3>厨师龙虾</h3>
+          <div class="meta">细节敏锐、流程稳定</div>
+          <p>在高要求交付与稳定执行中表现出色。</p>
+        </article>
+        <article class="feature-card">
+          <span class="badge">硬核</span>
+          <h3>钳工龙虾</h3>
+          <div class="meta">擅长工具链与工程化整合</div>
+          <p>帮你把零散技能打磨成可复用的流水线。</p>
+        </article>
+        <article class="feature-card">
+          <span class="badge">灵感</span>
+          <h3>浪花龙虾</h3>
+          <div class="meta">创意迭代、表达多元</div>
+          <p>适合内容生产、品牌风格探索与设计任务。</p>
+        </article>
+        <article class="feature-card">
+          <span class="badge">守护</span>
+          <h3>岩礁龙虾</h3>
+          <div class="meta">稳定性与风险控制</div>
+          <p>提供结构化检查与合规提醒，降低返工。</p>
+        </article>
+        <article class="feature-card">
+          <span class="badge">效率</span>
+          <h3>航海龙虾</h3>
+          <div class="meta">快速对齐目标、拆解任务</div>
+          <p>适合短周期冲刺或多项目并行管理。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="scenes" class="section">
+      <h2>应用场景</h2>
+      <p class="subtitle">把技能包投放到合适的场景，产出会更丝滑。</p>
+      <div class="hero-grid">
+        <article class="scene-card">
+          <span class="badge">企业</span>
+          <h3>企业协作</h3>
+          <p>统一标准、沉淀流程，释放大团队协作效率。</p>
+        </article>
+        <article class="scene-card">
+          <span class="badge">个人</span>
+          <h3>个人工作室</h3>
+          <p>轻量工具加速创作节奏，保持灵感与执行力。</p>
+        </article>
+        <article class="scene-card">
+          <span class="badge">学术</span>
+          <h3>学术研究</h3>
+          <p>快速梳理文献、实验流程与研究记录。</p>
+        </article>
+        <article class="scene-card">
+          <span class="badge">电商</span>
+          <h3>电商增长</h3>
+          <p>搭建选品、内容与运营闭环，提高转化率。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="creators" class="section">
+      <h2>创作者排行榜</h2>
+      <p class="subtitle">感谢持续产出优秀技能包的创作者。</p>
+      <div class="leaderboard">
+        <div class="leaderboard-item">
+          <div class="leaderboard-meta">
+            <span class="rank">NO.1</span>
+            <strong>林深工作室</strong>
+            <span class="meta">代表作：自动化脚本助手</span>
+          </div>
+          <span class="score">累计下载 4,820</span>
+        </div>
+        <div class="leaderboard-item">
+          <div class="leaderboard-meta">
+            <span class="rank">NO.2</span>
+            <strong>奶油工坊</strong>
+            <span class="meta">代表作：品牌叙事编织机</span>
+          </div>
+          <span class="score">累计下载 4,120</span>
+        </div>
+        <div class="leaderboard-item">
+          <div class="leaderboard-meta">
+            <span class="rank">NO.3</span>
+            <strong>半岛实验室</strong>
+            <span class="meta">代表作：研究数据整理器</span>
+          </div>
+          <span class="score">累计下载 3,760</span>
+        </div>
+        <div class="leaderboard-item">
+          <div class="leaderboard-meta">
+            <span class="rank">NO.4</span>
+            <strong>浪花创作队</strong>
+            <span class="meta">代表作：多平台内容派发器</span>
+          </div>
+          <span class="score">累计下载 3,420</span>
+        </div>
+      </div>
+    </section>
+
     <section>
-      <h2>已上架技能</h2>
+      <h2 id="skills-section">已上架技能</h2>
       <div id="skills" class="grid"></div>
       <div id="empty" class="empty" style="display:none;">暂时没有已通过的技能。</div>
     </section>
