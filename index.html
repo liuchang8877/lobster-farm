@@ -392,7 +392,7 @@
         <div class="section-title"><span>🦞</span>龙虾品种 · 角色</div>
         <div class="section-desc">不同品种的龙虾有不同的性格和能力，选择适合你的 AI 角色</div>
       </div>
-      <div class="grid">
+      <div class="grid" id="skills-grid">
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">🎖️</div>
           <div class="type">CEO 品种</div>
@@ -462,7 +462,7 @@
         <div class="section-title"><span>⚡</span>龙虾技能 · SKILL</div>
         <div class="section-desc">让龙虾掌握各种技能，就像给渔船装配不同的工具</div>
       </div>
-      <div class="grid">
+      <div class="grid" id="skills-grid">
         <div class="card">
           <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">💻</div>
           <h3>编程技能</h3>
@@ -526,7 +526,7 @@
         <div class="section-title"><span>🌊</span>龙虾水域 · 使用场景</div>
         <div class="section-desc">不同水域适合不同类型的龙虾，找到最适合你的场景</div>
       </div>
-      <div class="grid">
+      <div class="grid" id="skills-grid">
         <div class="scene-card">
           <h3>🏢 企业水域</h3>
           <p>团队协作、项目管理、客服响应。让 AI 成为你的企业助手。</p>
@@ -600,7 +600,7 @@
       <div class="section-header" style="margin-top: 40px;">
         <div class="section-title"><span>🏆</span>创作者排行榜</div>
       </div>
-      <div class="leaderboard">
+      <div class="leaderboard" id="leaderboard-list">
         <div class="leaderboard-item">
           <div class="rank gold">1</div>
           <div class="info">
@@ -643,11 +643,11 @@
         <form id="uploadForm">
           <div class="form-group">
             <label>技能名称</label>
-            <input type="text" placeholder="例如：高级编程技能包" required>
+            <input type="text" id="skillName" placeholder="例如：高级编程技能包" required>
           </div>
           <div class="form-group">
             <label>技能类型</label>
-            <select>
+            <select id="skillType">
               <option>编程技能</option>
               <option>搜索技能</option>
               <option>写作技能</option>
@@ -659,7 +659,7 @@
           </div>
           <div class="form-group">
             <label>技能描述</label>
-            <textarea placeholder="详细描述这个技能的功能和使用方法..." required></textarea>
+            <textarea id="skillDesc" placeholder="详细描述这个技能的功能和使用方法..." required></textarea>
           </div>
           <div class="form-group">
             <label>技能文件 (SKILL.md)</label>
@@ -696,3 +696,8 @@
   </script>
 </body>
 </html>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- 自定义 JS -->
+<script src="js/supabase.js"></script>
