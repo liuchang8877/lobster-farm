@@ -607,6 +607,7 @@
         .split(',').map(t => t.trim()).filter(t => t);
       
       const success = await uploadSkill({
+        console.log('上传数据:', {
         name: document.getElementById('skillName').value,
         type: document.getElementById('skillType').value,
         description: document.getElementById('skillDesc').value,
@@ -616,6 +617,7 @@
       btn.disabled = false;
       btn.textContent = '🚀 提交审核';
       
+      console.log('上传结果:', success);
       if (success) {
         alert('🎉 提交成功！\n\n技能已提交审核，\n通过后将自动上架并发放算力奖励。');
         form.reset();
