@@ -631,7 +631,9 @@
     async function loadSkills() {
       try {
         const { data, error } = await supabase.from('skills').select('*').eq('status', 'approved').order('downloads', { ascending: false });
-        if (error || !data) return;
+        if (error) { console.error('查询错误:', error); return; }
+        if (!data) { console.log('无数据'); return; }
+        console.log('获取到技能数:', data.length);
         
         const grid = document.getElementById('skillsGrid1');
         if (!grid) return;
@@ -639,7 +641,7 @@
         const icons = {'编程': '💻', '搜索': '🔍', '写作': '✍️', '浏览器': '🌐', '记忆': '🧠', '设计': '🎨'};
         const colors = {'编程': 'linear-gradient(135deg, #FFE5D9, #FFCDB2)', '搜索': 'linear-gradient(135deg, #E8F5E9, #C8E6C9)', '写作': 'linear-gradient(135deg, #FFF3E0, #FFE0B2)', '浏览器': 'linear-gradient(135deg, #E3F2FD, #BBDEFB)', '记忆': 'linear-gradient(135deg, #F3E5F5, #E1BEE7)', '设计': 'linear-gradient(135deg, #FCE4EC, #F8BBD9)'};
         
-        grid.innerHTML = data.map(s => `
+        console.log('渲染技能列表, 数量:', data.length); grid.innerHTML = data.map(s => `
           <div class="card">
             <div class="card-icon" style="background: ${colors[s.type] || colors['编程']}">${icons[s.type] || '⚡'}</div>
             <h3>${s.name}</h3>
