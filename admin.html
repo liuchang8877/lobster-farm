@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>审核管理</title>
+  <title>审核管理 v20260227</title>
   <style>
     body { font-family: sans-serif; background: #FFF8F0; margin: 0; }
     .login { padding: 100px; text-align: center; }
@@ -36,47 +36,56 @@
     <br>
     <button id="loginBtn">登录</button>
     <p id="err" style="color:red;"></p>
+    <p style="color:#888;font-size:12px;">v20260227-3</p>
   </div>
   
   <!-- 后台 -->
   <div class="admin" id="adminDiv">
     <div class="header">
-      <h2>🦞 审核管理中心</h2>
+      <h2>🦞 审核管理中心 v3</h2>
       <button onclick="logout()">退出</button>
     </div>
     <div class="container">
       <div class="stats">
-        <div class="stat"><div class="stat-num" id="p0">0</div><div>待审核</div></div>
-        <div class="stat"><div class="stat-num" id="p1">0</div><div>已通过</div></div>
-        <div class="stat"><div class="stat-num" id="p2">0</div><div>已拒绝</div></div>
+        <div class="stat"><div class="stat-num" id="p0">-</div><div>待审核</div></div>
+        <div class="stat"><div class="stat-num" id="p1">-</div><div>已通过</div></div>
+        <div class="stat"><div class="stat-num" id="p2">-</div><div>已拒绝</div></div>
       </div>
       <div class="tabs">
         <button class="tab active" id="tab0" onclick="show(0)">待审核</button>
         <button class="tab" id="tab1" onclick="show(1)">已通过</button>
         <button class="tab" id="tab2" onclick="show(2)">已拒绝</button>
       </div>
-      <div class="list active" id="list0"></div>
+      <div class="list active" id="list0">加载中...</div>
       <div class="list" id="list1"></div>
       <div class="list" id="list2"></div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2?v=20260227"></script>
   <script>
+    console.log('v20260227-3 loaded');
+    
     var supabase = window.supabase.createClient(
       'https://thpamcdbcfnmhvnmvhtc.supabase.co',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRocGFtY2RiY2ZubWh2bm12aHRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxNTg5MTIsImV4cCI6MjA4NzczNDkxMn0.7Mgl8AE6au-ICi22U8R7u2MFQqKyd1EP0-a-PsC6c2w'
     );
+    console.log('Supabase client created');
     
-    // 登录
-    document.getElementById('loginBtn').onclick = function() {
+    // 登录按钮
+    var loginBtn = document.getElementById('loginBtn');
+    loginBtn.onclick = function() {
+      console.log('login clicked');
       var pwd = document.getElementById('pwd').value;
+      console.log('password:', pwd);
       if (pwd === 'lobster2026') {
+        console.log('password correct');
         localStorage.setItem('admin', '1');
         document.getElementById('loginDiv').style.display = 'none';
         document.getElementById('adminDiv').style.display = 'block';
         load();
       } else {
+        console.log('password wrong');
         document.getElementById('err').innerText = '密码错误';
       }
     };
@@ -87,6 +96,7 @@
     };
     
     // 检查登录
+    console.log('check login:', localStorage.getItem('admin'));
     if (localStorage.getItem('admin') === '1') {
       document.getElementById('loginDiv').style.display = 'none';
       document.getElementById('adminDiv').style.display = 'block';
@@ -106,35 +116,42 @@
     }
     
     async function load() {
+      console.log('loading data...');
       var s = ['pending', 'approved', 'rejected'];
-      var counts = await Promise.all(s.map(function(st) {
-        return supabase.from('skills').select('*', { count: 'exact', head: true }).eq('status', st);
-      }));
-      
-      for (var i = 0; i < 3; i++) {
-        document.getElementById('p' + i).innerText = counts[i].count || 0;
-      }
-      
-      var data = await Promise.all(s.map(function(st) {
-        return supabase.from('skills').select('*').eq('status', st).order('created_at', { ascending: false }).limit(20);
-      }));
-      
-      for (var i = 0; i < 3; i++) {
-        var list = data[i].data || [];
-        var html = '';
-        if (list.length === 0) {
-          html = '<p style="text-align:center;color:#888;padding:40px;">暂无内容</p>';
-        } else {
-          for (var j = 0; j < list.length; j++) {
-            var item = list[j];
-            var tags = (item.tags || []).map(function(t) { return '<span style="background:#FFEEE4;color:#FF7B6B;padding:2px8px;border-radius:10px;font-size:12px;margin-right:5px;">' + t + '</span>'; }).join('');
-            var btns = item.status === 'pending' ? 
-              '<button class="btn btn-a" onclick="action(\'' + item.id + '\',\'approved\')">✅ 通过</button>' +
-              '<button class="btn btn-r" onclick="action(\'' + item.id + '\',\'rejected\')">❌ 拒绝</button>' : '';
-            html += '<div class="card"><h3>' + item.name + '</h3><p>' + (item.description || '暂无描述') + '</p><div style="margin-bottom:10px;"><span style="background:#FFEEE4;color:#FF7B6B;padding:2px8px;border-radius:10px;font-size:12px;">' + item.type + '</span> ' + tags + '</div>' + btns + '</div>';
-          }
+      try {
+        var counts = await Promise.all(s.map(function(st) {
+          return supabase.from('skills').select('*', { count: 'exact', head: true }).eq('status', st);
+        }));
+        console.log('counts:', counts.map(function(c) { return c.count; }));
+        
+        for (var i = 0; i < 3; i++) {
+          document.getElementById('p' + i).innerText = counts[i].count || 0;
         }
-        document.getElementById('list' + i).innerHTML = html;
+        
+        var data = await Promise.all(s.map(function(st) {
+          return supabase.from('skills').select('*').eq('status', st).order('created_at', { ascending: false }).limit(20);
+        }));
+        console.log('data loaded:', data.length);
+        
+        for (var i = 0; i < 3; i++) {
+          var list = data[i].data || [];
+          var html = '';
+          if (list.length === 0) {
+            html = '<p style="text-align:center;color:#888;padding:40px;">暂无内容</p>';
+          } else {
+            for (var j = 0; j < list.length; j++) {
+              var item = list[j];
+              var btns = item.status === 'pending' ? 
+                '<button class="btn btn-a" onclick="action(\'' + item.id + '\',\'approved\')">✅ 通过</button>' +
+                '<button class="btn btn-r" onclick="action(\'' + item.id + '\',\'rejected\')">❌ 拒绝</button>' : '';
+              html += '<div class="card"><h3>' + item.name + '</h3><p>' + (item.description || '暂无描述') + '</p>' + btns + '</div>';
+            }
+          }
+          document.getElementById('list' + i).innerHTML = html;
+        }
+      } catch(e) {
+        console.error('error:', e);
+        alert('加载失败: ' + e.message);
       }
     }
     
