@@ -6,14 +6,14 @@
   <title>龙虾技能市场</title>
   <style>
     :root {
-      --coral-500: #E87A5F;
-      --coral-400: #F4A460;
-      --coral-200: #F5DEB3;
-      --coral-100: #FFF8DC;
-      --sand-50: #FFF6F2;
-      --ink-900: #4A2A1E;
-      --ink-700: #6B3C2D;
-      --shadow: 0 16px 40px rgba(255, 123, 107, 0.22);
+      --blue-500: #3B82F6;
+      --blue-400: #60A5FA;
+      --blue-200: #93C5FD;
+      --blue-100: #DBEAFE;
+      --sky-50: #F0F9FF;
+      --slate-900: #0F172A;
+      --slate-700: #334155;
+      --shadow: 0 16px 40px rgba(59, 130, 246, 0.22);
       --radius: 18px;
     }
 
@@ -21,11 +21,11 @@
 
     body {
       margin: 0;
-      color: var(--ink-900);
+      color: var(--slate-900);
       background:
-        radial-gradient(1200px 520px at 10% -10%, #fff7f0 0%, #fff7f0 45%, transparent 70%),
-        radial-gradient(900px 400px at 90% 0%, rgba(255, 155, 106, 0.35) 0%, transparent 65%),
-        linear-gradient(180deg, #fff7f0 0%, #f8f8f8 30%, #fff7f0 100%);
+        radial-gradient(1200px 520px at 10% -10%, #F0F9FF 0%, #F0F9FF 45%, transparent 70%),
+        radial-gradient(900px 400px at 90% 0%, rgba(59, 130, 246, 0.35) 0%, transparent 65%),
+        linear-gradient(180deg, #F0F9FF 0%, #F8FAFC 30%, #F0F9FF 100%);
       font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
       padding-top: 72px;
     }
@@ -45,7 +45,7 @@
       right: 0;
       z-index: 20;
       background: rgba(255, 246, 242, 0.92);
-      border-bottom: 1px solid #f5f5f5;
+      border-bottom: 1px solid #E2E8F0;
       backdrop-filter: blur(8px);
     }
 
@@ -61,7 +61,7 @@
 
     .brand {
       font-weight: 700;
-      color: var(--ink-700);
+      color: var(--slate-700);
       letter-spacing: 1px;
     }
 
@@ -73,14 +73,14 @@
 
     .nav-links a {
       text-decoration: none;
-      color: var(--ink-700);
-      background: #fff7f0;
-      border: 1px solid #f5f5f5;
+      color: var(--slate-700);
+      background: #F0F9FF;
+      border: 1px solid #E2E8F0;
       padding: 6px 14px;
       border-radius: 999px;
       font-size: 14px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 16px rgba(255, 123, 107, 0.12);
+      box-shadow: 0 8px 16px rgba(59, 130, 246, 0.12);
     }
 
     .nav-links a:hover { transform: translateY(-1px); }
@@ -98,7 +98,7 @@
     }
 
     .subtitle {
-      color: var(--ink-700);
+      color: var(--slate-700);
       max-width: 720px;
       font-size: 16px;
     }
@@ -112,9 +112,9 @@
     }
 
     .panel {
-      background: #fff7f0;
+      background: #F0F9FF;
       border-radius: var(--radius);
-      border: 1px solid #f5f5f5;
+      border: 1px solid #E2E8F0;
       padding: 26px;
       box-shadow: var(--shadow);
       position: relative;
@@ -128,7 +128,7 @@
       height: 220px;
       right: -80px;
       top: -100px;
-      background: radial-gradient(circle, rgba(255, 155, 106, 0.35) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -144,9 +144,9 @@
       font-size: 12px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: #fff7f0;
-      color: var(--ink-700);
-      border: 1px solid #f5f5f5;
+      background: #F0F9FF;
+      color: var(--slate-700);
+      border: 1px solid #E2E8F0;
     }
 
     .grid {
@@ -157,30 +157,30 @@
     }
 
     .card {
-      background: linear-gradient(160deg, #fff7f0 0%, #f8f8f8 100%);
-      border: 1px solid #f5f5f5;
+      background: linear-gradient(160deg, #F0F9FF 0%, #F8FAFC 100%);
+      border: 1px solid #E2E8F0;
       border-radius: 16px;
       padding: 18px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       min-height: 180px;
-      box-shadow: 0 10px 24px rgba(255, 123, 107, 0.14);
+      box-shadow: 0 10px 24px rgba(59, 130, 246, 0.14);
     }
 
     .badge {
       align-self: flex-start;
-      background: #fff7f0;
-      color: var(--ink-700);
+      background: #F0F9FF;
+      color: var(--slate-700);
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 12px;
-      border: 1px solid #f5f5f5;
+      border: 1px solid #E2E8F0;
     }
 
     .meta {
       font-size: 13px;
-      color: var(--coral-500);
+      color: var(--blue-500);
     }
 
     .tags {
@@ -191,11 +191,11 @@
 
     .tag {
       font-size: 12px;
-      background: #fff7f0;
-      color: var(--ink-700);
+      background: #F0F9FF;
+      color: var(--slate-700);
       padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid #f5f5f5;
+      border: 1px solid #E2E8F0;
     }
 
     .leaderboard {
@@ -210,8 +210,8 @@
       justify-content: space-between;
       gap: 12px;
       padding: 12px 16px;
-      background: #f8f8f8;
-      border: 1px solid #f5f5f5;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
       border-radius: 14px;
     }
 
@@ -223,12 +223,12 @@
 
     .rank {
       font-size: 12px;
-      color: var(--coral-500);
+      color: var(--blue-500);
     }
 
     .score {
       font-weight: 700;
-      color: var(--ink-700);
+      color: var(--slate-700);
     }
 
     form {
@@ -251,16 +251,16 @@
       flex-direction: column;
       gap: 6px;
       font-size: 14px;
-      color: var(--ink-700);
+      color: var(--slate-700);
     }
 
     input, textarea, select {
-      border: 1px solid #f5f5f5;
+      border: 1px solid #E2E8F0;
       border-radius: 12px;
       padding: 10px 12px;
       font-size: 14px;
-      background: #fff7f0;
-      color: var(--ink-900);
+      background: #F0F9FF;
+      color: var(--slate-900);
       font-family: inherit;
     }
 
@@ -275,13 +275,13 @@
 
     button {
       border: none;
-      background: linear-gradient(135deg, var(--coral-500), var(--coral-400));
-      color: #fff7f0;
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-400));
+      color: #F0F9FF;
       padding: 10px 18px;
       border-radius: 999px;
       font-size: 14px;
       cursor: pointer;
-      box-shadow: 0 10px 22px rgba(255, 123, 107, 0.35);
+      box-shadow: 0 10px 22px rgba(59, 130, 246, 0.35);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -289,18 +289,18 @@
 
     .status {
       font-size: 13px;
-      color: var(--ink-700);
+      color: var(--slate-700);
     }
 
-    .error { color: #a44b2f; }
+    .error { color: #1E40AF; }
 
     .empty {
       text-align: center;
       padding: 28px 12px;
-      color: var(--ink-700);
-      background: #f8f8f8;
+      color: var(--slate-700);
+      background: #F8FAFC;
       border-radius: var(--radius);
-      border: 1px dashed #f5f5f5;
+      border: 1px dashed #E2E8F0;
       margin-top: 14px;
     }
 
